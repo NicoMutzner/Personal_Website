@@ -27,10 +27,12 @@
       --spot-w: clamp(48rem, 42vw, 90rem);
       --spot-h: clamp(72rem, 78vh, 120rem);
       /* timeline layout tokens */
-      --timeline-x: 1rem;      /* x-position of the vertical line within .timeline */
-      --dot: 14px;             /* diameter of timeline dot */
-      --label-w: 3.8rem;       /* width reserved for year label */
-      --label-gap: .2rem;      /* gap between label block and the line/content */
+      --label-w: 3.8rem;         /* width of the year column */
+      --label-gap: .35rem;       /* gap between year and line */
+      --line-gap: 1rem;          /* gap between year column and the vertical line */
+      --dot: 14px;               /* dot size */
+      --content-indent: calc(var(--line-gap) + var(--dot));     /* space for line+dot */
+      --gutter-left:  calc(var(--label-w) + var(--label-gap));  /* start of line area */
       /* media heigh for thumbs */
       --thumb-h: 220px;
       --thumb-radius: 16px;
@@ -54,24 +56,90 @@
     img { max-width: 100%; display: block; }
     .container { width: min(100% - 2rem, var(--maxw)); margin: 0 auto; }
 
+    /* ---------- Background Bands ---------- */
+    .band {
+      position: relative;
+      background: rgba(189, 223, 240, 1); /* your requested color */
+      width: 100vw;                      /* full-bleed background */
+      margin-left: 50%;                  /* trick to escape container limits */
+      transform: translateX(-50%);
+      padding: 3.2rem 0;                 /* consistent vertical spacing */
+      border: none;
+      color: #000; /* all text inside band is black */
+    }
+
+    .band .h2 {
+      color: #000;           /* pure black title */
+    }
+
+    .band .muted {
+      color: #111;           /* optional: darker muted text for better contrast */
+    }
+
+    .band p {
+      color: #222;
+    }
+
+    .band .chip {
+      color: #fff;
+      background: rgb(5, 39, 117);
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      font-weight: 500;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: background 0.2s ease;
+    }
+
+    .band .chip:hover {
+      background: rgb(50, 90, 184);               /* slightly darker on hover */
+    }
+
+    .band .container {
+      position: relative;
+      z-index: 1;
+    }
+
     /* ---------- Top Nav ---------- */
     .nav { position: sticky; top: 0; z-index: 50; backdrop-filter: saturate(180%) blur(10px);
       background: color-mix(in srgb, var(--surface) 85%, transparent); border-bottom: 1px solid color-mix(in srgb, var(--muted) 30%, transparent); }
-    .nav-inner{
+    .nav-inner {
       display: flex;
       align-items: center;
-      justify-content: center;   /* was space-between */
-      gap: 1.25rem;
+      justify-content: space-between; /* home left, links right */
       padding: .75rem 0;
     }
-    .brand { display:flex; align-items:center; gap:.75rem; font-weight:700; letter-spacing:.2px; }
-    .brand .logo { width:34px; height:34px; display:grid; place-items:center; border-radius:12px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: var(--shadow); }
-    .brand .logo svg { width:20px; height:20px; fill:white; }
+    .home-link {
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .home-link:hover {
+      color: var(--accent);
+    }
+
     .nav a { opacity:.9; }
     .nav a:hover { opacity:1; }
-    .links { display:flex; gap:1rem; align-items:center; flex-wrap:wrap; }
-    .btn { display:inline-flex; align-items:center; gap:.5rem; padding:.6rem .9rem; border-radius:999px; border:1px solid color-mix(in srgb, var(--muted) 30%, transparent);
-      background: linear-gradient(180deg, color-mix(in oklab, var(--surface), white 2%), color-mix(in oklab, var(--surface), black 2%)); box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset, 0 6px 18px rgba(2,6,23,0.15); }
+    .links {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end; /* ensures right alignment */
+    }
+
+    .btn {
+    display:inline-flex; align-items:center;
+    gap:.5rem; padding:.6rem .9rem;
+    border-radius:999px;
+    border:1px solid color-mix(in srgb, var(--muted) 30%, transparent);
+    background: linear-gradient(180deg, color-mix(in oklab, var(--surface), white 2%), color-mix(in oklab, var(--surface), black 2%));
+    box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset, 0 6px 18px rgba(2,6,23,0.15);
+    }
+
     .btn.primary{
       background:
         linear-gradient(135deg, var(--accent), var(--accent-2)) padding-box,
@@ -80,134 +148,149 @@
       border: 1px solid transparent;   /* use the second gradient as the border */
       color: #fff;
 
-  /* prevent artifacts */
-  background-repeat: no-repeat;
-  background-origin: border-box;
-  background-clip: padding-box, border-box; /* gradient fills to the rounded border */
-  box-shadow: 0 6px 18px rgba(2,6,23,.25); /* remove the inherited inset highlight */
-}
+      /* prevent artifacts */
+      background-repeat: no-repeat;
+      background-origin: border-box;
+      background-clip: padding-box, border-box; /* gradient fills to the rounded border */
+      box-shadow: 0 6px 18px rgba(2,6,23,.25); /* remove the inherited inset highlight */
+    }
 
     /* ---------- Hero ---------- */
 
-    .hero .identity {
-      display: flex;
-      justify-content: center;    /* center the whole group horizontally */
-      align-items: center;        /* align photo and text vertically */
-      gap: 1.5rem;                /* space between photo and name */
-      margin: 0 auto 2rem;
-      text-align: left;           /* keep name + tagline aligned naturally */
+     .hero {
+      padding: 5rem 0 3rem;
+      text-align: left;
     }
 
-    /* Portrait wrapper */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;               /* left copy / right identity */
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: center;
+    }
+
+    /* LEFT column: headline + copy + CTAs */
+    .hero-title{
+      margin: 0 0 1rem;
+      font-weight: 800;
+      line-height: .95;
+      letter-spacing: -.5px;
+      font-size: clamp(2.6rem, 6.8vw, 4.8rem);         /* big + responsive */
+      max-width: 16ch;
+    }
+
+    .hero-subtitle{
+      color: var(--muted);
+      font-size: clamp(1rem, 1.2vw + .6rem, 1.2rem);
+      max-width: 65ch;
+      margin: 0 0 1.6rem;
+    }
+
+    .hero .cta{
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: flex-start;                     /* left-aligned CTAs */
+      margin-bottom: 2rem;
+    }
+
+    /* RIGHT column: photo + identity + stat counters */
+
+    .hero-aside {
+      text-align: center;                /* centers text */
+      display: flex;
+      flex-direction: column;
+      align-items: center;               /* centers the photo + stats horizontally */
+      justify-content: center;
+    }
+
+    .hero-aside .photo-wrap {
+      margin-bottom: 1.25rem;
+    }
+
     .photo-wrap {
-      width: clamp(320px, 14vw, 180px);
-      height: clamp(320px, 14vw, 180px);
+      width: clamp(180px, 22vw, 280px);
+      height: clamp(180px, 22vw, 280px);
       border-radius: 50%;
       overflow: hidden;
       position: relative;
-      flex-shrink: 0;             /* prevent shrinking in narrow viewports */
+      flex-shrink: 0;
     }
 
-    /* Portrait image */
     .hero-photo {
       display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
       border-radius: 50%;
-      border: 3px solid var(--accent);
+      border: 2px solid var(--accent);
       box-shadow: var(--shadow);
     }
 
-    /* Text beside the image */
-    .display-name {
-      margin: 0;
-      line-height: 1.05;
-      font-weight: 800;
-      font-size: clamp(2rem, 4.8vw + .3rem, 3.2rem);
-      letter-spacing: -0.5px;
-    }
-    .tagline {
-      margin: .25rem 0 0;
-      color: var(--muted);
-    }
-
-    /* Stack photo above name on mobile */
-    @media (max-width: 900px) {
-      .hero .identity {
-        flex-direction: column;
-        align-items: center;
+    .identity-name{
         text-align: center;
-        gap: 1rem;
-      }
-      .photo-wrap {
-        width: clamp(140px, 28vw, 180px);
-        height: clamp(140px, 28vw, 180px);
-      }
+      margin: 0.5rem 0 0.25rem;
+      font-weight: 800;
+      letter-spacing: -.3px;
+      line-height: 1.05;
+      font-size: clamp(1.8rem, 3vw, 3rem);
     }
 
-    .hero {
-      padding: 5rem 0 3rem;
-      position: relative;
-      text-align: center;                /* center all text inside the hero */
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr;        /* single column full width */
-      gap: 3rem;
-      align-items: center;
-      justify-items: center;             /* center image and buttons horizontally */
-    }
-
-    /* subtitle stays wide enough for readability */
-    .subtitle {
-      color: var(--muted);
-      font-size: clamp(1rem, 1.5vw + .6rem, 1.2rem);
-      max-width: 75ch;
-      margin: 0 auto 1.5rem;             /* center & add spacing below */
-    }
-
-    /* center the button row under subtitle */
-    .hero .row {
-      display: flex;
-      justify-content: center;  /* horizontally center the buttons */
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-
-    /* keep text readable on large screens */
-    .hero h1, .hero h2 {
+    .identity-role{
       text-align: center;
+      margin: .25rem 0 1.1rem;
+      margin-bottom: 1.5rem;
+      color: var(--muted);
+      font-size: 1rem;
     }
 
-    .hero .cta { justify-content: center; 
-               margin-bottom: 2.5rem;}
+    /* Place your existing stat cards under the identity block */
+    .hero .stats{
+      grid-template-columns: repeat(2, minmax(180px,1fr)); /* two pills on the right */
+      gap: 1rem;
+      margin-top: .75rem;
+    }
 
-    .badge { display:inline-flex; gap:.5rem; align-items:center; padding:.35rem .6rem; border-radius:999px; font-size:.8rem; color:var(--text); background: color-mix(in srgb, var(--accent) 18%, transparent); border:1px solid color-mix(in srgb, var(--accent) 40%, transparent); }
-    .title { font-size: clamp(2rem, 4vw + .5rem, 3.3rem); line-height:1.1; letter-spacing:-.5px; margin:.6rem 0 1rem; }
-    .cta { display:flex; gap:.8rem; align-items:center; margin-top: 1.6rem; flex-wrap: wrap; }
-    .hero-card { border-radius: var(--radius); padding:1.25rem; background: var(--card-glass); border: 1px solid color-mix(in srgb, var(--muted) 20%, transparent); box-shadow: var(--shadow); }
+    /* Remove any leftover center alignment from older rules */
+    .hero h1, .hero h2 { text-align: left; }
 
-    /* Pub and Cit stat cards */
-    .stats { display:grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: .9rem; margin-top: 1rem; position: relative; isolation: isolate;}
-    .stat { padding: 1rem; border-radius: 14px; background: linear-gradient(180deg, color-mix(in oklab, var(--surface), white 3%), color-mix(in oklab, var(--surface), black 4%)); border:1px solid color-mix(in srgb, var(--muted) 18%, transparent); text-align:center; position: relative; isolation: isolate;}
+    .stats {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
+      gap: .9rem;
+      margin-top: 1rem;
+      position: relative;
+      isolation: isolate;
+    }
+    .stat {
+      padding: 1rem;
+      border-radius: 14px;
+      background: linear-gradient(180deg,
+        color-mix(in oklab, var(--surface), white 3%),
+        color-mix(in oklab, var(--surface), black 4%)
+      );
+      border:1px solid color-mix(in srgb, var(--muted) 18%, transparent);
+      text-align:center;
+      position: relative;
+      isolation: isolate;
+    }
     .stat .num { font-size: 2rem; font-weight: 800; }
     .stat .lbl { font-size: 1.2rem; color: var(--muted); }
-    @keyframes stat-pop { 0%{transform:scale(1)} 60%{transform:scale(1.06)} 100%{transform:scale(1)} }
+
+    @keyframes stat-pop {
+      0%{transform:scale(1)} 60%{transform:scale(1.06)} 100%{transform:scale(1)}
+    }
     .stat .num[data-animated="1"] { animation: stat-pop .35s ease-out; }
 
-    /* Border layer using a masked gradient so only the border shows */
+    /* Gradient border sweep layer */
     .stat::after {
       content: "";
       position: absolute;
       inset: 0;
-      border-radius: 14px;                 /* match your .stat radius */
-      padding: 1.5px;                      /* gradient border thickness */
+      border-radius: 14px;
+      padding: 1.5px;                      /* border thickness */
       background-size: 200% 100%;
       background-position: 0% 0;           /* start on the left */
-      /* mask so gradient only shows as a ring (not fill) */
       -webkit-mask:
         linear-gradient(#000 0 0) content-box,
         linear-gradient(#000 0 0);
@@ -216,8 +299,6 @@
       pointer-events: none;
       opacity: 0;                          /* hidden initially -> will fade in */
     }
-
-    /* Give each card its own gradient (no HTML classes needed) */
     .stats .stat:nth-child(1)::after {
       background-image: linear-gradient(90deg, var(--accent), var(--accent-2));
     }
@@ -225,30 +306,36 @@
       background-image: linear-gradient(90deg, var(--accent-2), var(--accent));
     }
 
-    /* Appear + sweep animation (opacity + background-position) */
     @keyframes stat-border-appear {
       0%   { opacity: 0;   background-position:   0% 0; }
       15%  { opacity: .95; background-position:  10% 0; }
       100% { opacity: .95; background-position: 100% 0; }
     }
-
-    /* When we add this class (via JS), the colored border takes over */
-    .stat.is-animating::after {
-      animation: stat-border-appear 5s ease-out forwards;
-    }
-
-    /* Re-trigger on hover of the number (modern browsers) */
+    .stat.is-animating::after { animation: stat-border-appear 5s ease-out forwards; }
     .stat:has(.num:hover)::after {
       animation: stat-border-appear 850ms cubic-bezier(.2,.8,.2,1) forwards;
     }
-
-    /* Hover elevation */
     .stat:hover {
       transform: translateY(-2px);
       box-shadow:
         0 0 14px color-mix(in srgb, var(--accent) 25%, transparent),
         0 8px 28px rgba(2,6,23,.55);
       border-color: color-mix(in srgb, var(--accent) 60%, transparent);
+    }
+
+    /* ---------- Responsive tweaks ---------- */
+    @media (max-width: 900px){
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero .cta { justify-content: center; }
+      .identity-name, .identity-role { text-align: center; }
+      .hero .stats {
+        grid-template-columns: repeat(2, minmax(140px,1fr));
+        margin-left: auto; margin-right: auto;
+      }
+      .photo-wrap {
+        width: clamp(140px, 38vw, 220px);
+        height: clamp(140px, 38vw, 220px);
+      }
     }
 
     /* ---------- Sections ---------- */
@@ -264,6 +351,31 @@
       .hero-grid { grid-template-columns: 1fr; }
       .grid.cols-2, .grid.cols-3 { grid-template-columns: 1fr; }
     }
+
+    /* ---------- About Section ---------- */
+
+    #about {
+      padding-top: 1rem;   /* smaller top padding (optional) */
+    }
+
+    .about-text {
+      max-width: 80ch;          /* controls readable line length */
+      margin: 0 auto 3rem;      /* centers and adds bottom spacing */
+      text-align: center;       /* centers all text */
+      line-height: 1.6;         /* comfortable reading */
+      font-size: 1.05rem;       /* slightly larger body text */
+      color: var(--muted);
+    }
+
+    .about-text strong {
+      color: var(--text);
+    }
+
+    #about .section-head {
+      justify-content: center;   /* center the heading block */
+      text-align: center;        /* ensure text aligns center */
+    }
+
 
     /* Cards */
     .card {
@@ -340,33 +452,51 @@
       opacity: .25;
     }
 
+    .band .featured-title {
+      color: #000;
+      margin: 0 0 1rem;
+      font-weight: 800;
+    }
+
+
     /* layout */
     .featured-grid {
       display: grid;
       grid-template-columns: 1.05fr 1.35fr;
-      gap: 1.25rem;
-      align-items: stretch;
-    }
-    @media (max-width: 900px){
-      .featured-grid { grid-template-columns: 1fr; }
+      gap: 2rem;
+      align-items: center;
     }
 
-    /* Featured image area: ensure it fully covers the card height */
-    .featured-card .media {
-      height: 100%;
+    @media (max-width: 900px) {
+      .featured-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
-    .featured-card .thumb {
+    /* Featured image area: make it taller and responsive */
+    .featured-grid .media {
+      height: clamp(300px, 40vh, 350px); /* adjust to taste */
+    }
+
+    .featured-grid .thumb {
       height: 100%;
       overflow: hidden;
-      border-radius: var(--radius) 0 0 var(--radius); /* keeps left side rounded only */
+      border-radius: var(--radius);
     }
 
-    .featured-card .thumb img.card-thumb {
+    .featured-grid .thumb img.card-thumb {
       width: 100%;
       height: 100%;
-      object-fit: cover;   /* fills entire area, cropping if necessary */
+      object-fit: cover;
       display: block;
+    }
+
+    /* Remove any leftover card styling */
+    .featured-card,
+    .band .card {
+      border: none;
+      box-shadow: none;
+      background: none;
     }
 
     /* eyebrow + title rhythm */
@@ -405,19 +535,35 @@
     .thumb.no-img::before { content: "Media"; opacity:.9; }
 
     /* Chips with subtle icons */
-    .chip { display:inline-flex; align-items:center; gap:.4rem; border:1px solid color-mix(in srgb, var(--muted) 30%, transparent); padding:.25rem .55rem; border-radius:999px; font-size:.75rem; color:var(--muted); }
+    .chip {
+    display:inline-flex;
+    align-items:center;
+    background: rgba(189, 223, 240, 1);
+    gap:.4rem;
+    border: 1.5px solid rgba(20, 60, 105, 0.35);
+    padding:.25rem .55rem;
+    border-radius:999px;
+    font-size:0.9rem;
+    font-weight: 600;
+    color: #000;
+     }
+
     .chip svg {
-        width: 16px;       /* or 14px if you prefer smaller */
-        height: 16px;
-        color: #fff;      /* ensures currentColor = white */
-        display: inline-block;
-        flex: 0 0 auto;
-        vertical-align: -2px;   /* nudges baseline so text aligns nicely */
-        overflow: visible;      /* prevents clipping if paths reach bounds */
-        }
-    .chip.status { border-color: color-mix(in srgb, var(--accent) 25%, transparent); background: color-mix(in oklab, var(--surface), white 4%); color: var(--text); }
-    .chip.status.prep { border-color: color-mix(in srgb, var(--accent-2) 30%, transparent); }
-    .chip.status.review { border-color: color-mix(in srgb, var(--accent) 40%, transparent); }
+      width: 16px;
+      height: 16px;
+      color: rgb(20, 60, 105);
+      display: inline-block;
+      flex: 0 0 auto;
+      vertical-align: -2px;
+      overflow: visible;
+    }
+
+    .chip.status.review {
+      color: rgb(20, 60, 105);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    /* (if you need this row utility, keep it standalone – not nested) */
     .row { display:flex; gap:.7rem; align-items:center; flex-wrap:wrap; }
 
     /* ---------- Publications: distinct CARD style (light blue tint) ---------- */
@@ -448,34 +594,75 @@
     }
 
     /* ---------- Timeline (Talks/Teaching/Collab) ---------- */
-    .timeline { position:relative;
-      margin-left: calc(var(--label-w) + var(--label-gap) + var(--timeline-x)); }
-    .timeline::before { content:""; position:absolute; left: var(--timeline-x); top:0; bottom:0; width:2px; background: color-mix(in srgb, var(--muted) 35%, transparent); }
-    .t-item { position:relative; padding-left: calc(var(--timeline-x) + 1.6rem); margin:1.1rem 0; }
-    .t-item::before{ content:""; position:absolute; left: calc(var(--timeline-x) + 1px - var(--dot)/2); width: var(--dot); height: var(--dot); top:.25rem; border-radius:50%; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: 0 0 0 3px color-mix(in srgb, var(--muted) 40%, transparent); }
+    .timeline {
+      position: relative;
+      margin-left: 0;
+      padding-left: calc(var(--gutter-left) + var(--content-indent));
+      color: rgb(20, 60, 105);
+    }
+
+    /* vertical line */
+    .timeline::before{
+      content:"";
+      position:absolute;
+      left: calc(var(--gutter-left) + var(--line-gap));
+      top:.25rem; bottom:.25rem;
+      width:2px;
+      background: currentColor;
+      opacity:.9;
+    }
+
+    .t-item{
+      position: relative;
+      margin: 1.1rem 0;
+      /* this is the space for the line + dot */
+      padding-left: calc(var(--line-gap) + var(--dot));
+    }
+
+    /* the dot */
+    .t-item::before{
+      content:"";
+      position:absolute;
+      left: -1.25rem;
+      top:.45rem;
+      width: var(--dot);
+      height: var(--dot);
+      border-radius:999px;
+      background: currentColor;
+      box-shadow:
+        0 0 0 2px color-mix(in srgb, currentColor 60%, transparent),
+        0 0 0 6px color-mix(in srgb, currentColor 15%, transparent);
+      z-index: 1;
+    }
+
+    /* the year label (single year or range) */
     .t-item::after{
       content: attr(data-date);
-      position:absolute; left: calc(-1 * (var(--label-w) + var(--label-gap))); top:0;
-      width: var(--label-w); text-align:right; line-height:1.1;
-      color:var(--muted); font-weight:600; font-variant-numeric: tabular-nums;
-      white-space: normal; word-break: normal; pointer-events:none;
+      position:absolute;
+      left: -5rem;
+      top: 0.32rem;
+      width: var(--label-w);
+      text-align: left;
+      line-height: 1.1;
+      color: color-mix(in srgb, currentColor 70%, #000); /* readable against band */
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      pointer-events:none;
     }
+
+    /* multi-line range (e.g., 2024–2025) */
     .t-item.range::after{
       content: attr(data-from) "\a" "– " attr(data-to);
       white-space: pre;
       text-align: center;
     }
 
-    /* Section cards for timelines */
-    .section-card .section-head {
-      margin: 0 0 1rem;
-      align-items: center;
-    }
-    .section-card .h2 { margin: 0; }
-    .section-card .section-head { margin-bottom: 1rem; }
-
     /* ---------- Footer ---------- */
-    footer { padding: 2.5rem 0 4rem; color: var(--muted); font-size:.95rem; }
+    footer {
+      margin-top: 6rem;
+      border-top: 1px solid color-mix(in srgb, var(--muted) 20%, transparent);
+      padding: 1.5rem 0 1.5rem;
+    }
 
     .link { position:relative; }
     .link.active::after { content:""; position:absolute; left:0; right:0; bottom:-8px; height:3px; border-radius:3px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
@@ -496,7 +683,7 @@
       position: relative;
       overflow: hidden;
       text-align: center;
-      padding: 4rem 0 6rem; /* breathing room */
+      padding: 4rem 0 0rem; /* breathing room */
       /* keep existing site background — no background property here */
       animation: fade-up 1s ease-out both;
     }
@@ -532,7 +719,9 @@
       margin: 0 auto;
       text-align: left;
     }
-    .contact-card .body { text-align: center; }
+    .contact-card .body {
+     text-align: center;
+     }
 
     /* links row */
     .contact-links {
@@ -543,12 +732,6 @@
       margin-top: 1.4rem;
     }
 
-    /* footer finish */
-    footer {
-      margin-top: 3rem;
-      border-top: 1px solid color-mix(in srgb, var(--muted) 20%, transparent);
-      padding-top: 1.5rem;
-    }
 
     /* animations */
     @keyframes fade-up {
@@ -565,6 +748,8 @@
       .contact-full { animation: none; }
       .contact-title { animation: none; }
     }
+
+    .card.section-card { overflow: visible; }
 
  </style>
 
@@ -684,137 +869,133 @@
     </symbol>
   </svg>
 
-<header class="nav">
-    <div class="container nav-inner">
-      <nav class="links" aria-label="Primary">
-        <a class="link" href="#about">About</a>
-        <a class="link" href="#publications">Publications</a>
-        <a class="link" href="#working-papers">Working Papers</a>
-        <a class="link" href="#projects">Labs & Projects</a>
-        <a class="link" href="#teaching">Teaching</a>
-        <a class="link" href="#talks">Conferences</a>
-        <a class="btn" href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-<main id="home" class="hero">
-    <div class="container hero-grid">
-      <div>
-          <div class="identity">
-                <div class="photo-wrap">
-                    <img id="hero-photo"
-                         src="images/personal_photo.jpg"
-                         alt="Portrait of Nico Mutzner"
-                         class="hero-photo"
-                         loading="lazy"
-                         onerror="this.style.display='none';var f=document.getElementById('photo-fallback');if(f)f.style.display='grid';" />
-                        <div id="photo-fallback" aria-hidden="true">NM</div>
-                    </div>
-  <div class="who">
-    <h1 class="display-name">Nico Mutzner</h1>
-    <p class="tagline">PhD Researcher · Sociology</p>
-  </div>
-</div>
-        <h1 class="title">Exploring how Humans and Technology Interact</h1>
-        <p class="subtitle">I study Human–AI interaction and cooperation through experimental methods. Below is an overview of my published work, working papers, teaching, and selected projects.</p>
-        <div class="cta">
-          <a class="btn primary" href="#publications">View Publications</a>
-          <a class="btn primary" href="mailto:nico@example.com" title="Email">Email</a>
+    <header class="nav">
+      <div class="container nav-inner">
+        <div class="brand">
+          <a class="home-link" href="#home">Home</a>
         </div>
-        <div class="stats">
-          <div class="stat">
-              <div class="num" id="count-pubs" data-target="8">8</div>
-              <div class="lbl">Publications</div>
+
+        <nav class="links" aria-label="Primary">
+          <a class="link" href="#about">About</a>
+          <a class="link" href="#publications">Publications</a>
+          <a class="link" href="#working-papers">Working Papers</a>
+          <a class="link" href="#projects">Labs & Projects</a>
+          <a class="link" href="#teaching">Teaching</a>
+          <a class="link" href="#talks">Conferences</a>
+          <a class="btn" href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="home" class="hero">
+      <div class="container hero-grid">
+        <!-- LEFT: headline, copy, CTAs -->
+        <section class="hero-copy">
+          <h1 class="hero-title">
+            Exploring how Humans and Technology Interact
+          </h1>
+
+          <p class="hero-subtitle">
+            I study human–AI interaction and cooperation through experimental methods.
+            Below is an overview of my work, working papers, teaching and selected projects.
+          </p>
+
+          <div class="cta">
+            <a class="btn primary" href="#publications">View Publications</a>
+            <a class="btn primary" href="mailto:nico.mutzner@uzh.ch">Email</a>
           </div>
-          <div class="stat">
-              <div class="num" id="count-cites" data-target="96">96</div>
-              <div class="lbl">Citations</div>
+        </section>
+
+        <!-- RIGHT: photo, name/role, counters -->
+        <aside class="hero-aside">
+          <div class="photo-wrap lg">
+            <img src="images/personal_photo.jpg" alt="Portrait of Nico Mutzner" class="hero-photo" loading="lazy">
+          </div>
+
+          <h2 class="identity-name">Nico Mutzner</h2>
+          <p class="identity-role">PhD Student · Sociology</p>
+
+            <div class="stats">
+                <div class="stat">
+                  <div class="num" id="count-pubs" data-target="8">8</div>
+                  <div class="lbl">Publications</div>
+                </div>
+                <div class="stat">
+                  <div class="num" id="count-cites" data-target="96">96</div>
+                  <div class="lbl">Citations</div>
+                </div>
+              </div>
+            </aside>
+      </div>
+    </main>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="h2">About</h2>
+        </div>
+
+        <div class="about-text">
+          <p>
+            I am a PhD student in Sociology at the University of Zurich studying
+            Human–AI cooperation in social dilemmas and group decision-making.
+            My work combines behavioral experiments with sociological concepts.
+            I teach experimental design in the age of AI and develop classroom
+            replications using synthetic participants.
+          </p>
+
+          <div class="row" style="justify-content:center; margin-top:1.4rem;">
+            <span class="chip">Human–AI Cooperation</span>
+            <span class="chip">AI Agents</span>
+            <span class="chip">Behavioural Experiments</span>
+            <span class="chip">Mixed Methods</span>
           </div>
         </div>
       </div>
-    </div>
-  </main>
+    </section>
 
-  <section id="about">
-    <div class="container">
-      <div class="section-head">
-        <h2 class="h2">About</h2>
-      </div>
-      <div class="grid cols-2">
-        <div class="card">
-          <div class="body">
-            <p>
-              I am a PhD researcher in Sociology at the University of Zurich studying human–AI cooperation in social dilemmas and group decision‑making. My work combines behavioral experiments with sociological concepts. I teach experimental design in the age of AI and develop classroom replications using synthetic participants.
-            </p>
-            <div class="row">
-              <span class="chip">Human-AI Cooperation</span>
-              <span class="chip">AI Agents</span>
-              <span class="chip">Behavioural Experiments</span>
-              <span class="chip">Mixed Methods</span>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="body">
-            <h3>Current Position</h3>
-            <ul>
-              <li>PhD Candidate, Sociology, UZH</li>
-            </ul>
-            <h3 style="margin-top:.8rem">Education</h3>
-            <ul>
-              <li>MA Sociology, University of Zurich, Switzerland</li>
-              <li>BSc Criminology & Sociology, Royal Holloway, University of London, United Kingdom</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-    <section id="featured">
+    <section id="featured" class="band">
       <div class="container">
         <div class="section-head">
           <h2 class="h2">Featured Article</h2>
         </div>
 
-        <article class="card featured-card">
-          <div class="featured-grid">
-            <div class="media">
-              <div class="thumb">
-                <img class="card-thumb" src="images/pubs/evading-the-algorithm.jpg"
-                     alt="Cover image for 'Evading the Algorithm' article"
-                     loading="lazy"
-                     onerror="this.closest('.thumb').classList.add('no-img'); this.remove();">
-              </div>
-            </div>
-
-            <div class="content body">
-              <h2 class="featured-title">
-                Evading the Algorithm: Increased Propensity for Tax Evasion and Norm Violations in Human–Computer Interactions
-              </h2>
-
-              <div class="row meta" style="margin:.4rem 0 1rem;">
-                <span class="chip">2023</span>
-                <span class="chip">Frontiers in Behavioral Economics</span>
-                <span class="chip">Open Access</span>
-              </div>
-
-              <p class="muted" style="margin:0 0 1rem;">
-                People cheat more when they believe oversight is algorithmic rather than human. Framing the system as a
-                <em>simple automation</em> exacerbates violations, while <em>complex AI</em> framing pulls behavior closer to human inspection.
-                Design &amp; presentation of automated inspectors directly shape compliance.
-              </p>
-
-              <div class="row cta">
-                <a class="btn primary" href="https://www.frontiersin.org/articles/10.3389/frbhe.2023.1227166/full"
-                   target="_blank" rel="noopener">Read article</a>
-                <a class="btn" href="https://github.com/NicoMutzner/HCI-Inspection-Game"
-                   target="_blank" rel="noopener">Code</a>
-              </div>
+        <div class="featured-grid">
+          <div class="media">
+            <div class="thumb">
+              <img class="card-thumb" src="images/pubs/evading-the-algorithm.jpg"
+                   alt="Cover image for 'Evading the Algorithm' article"
+                   loading="lazy"
+                   onerror="this.closest('.thumb').classList.add('no-img'); this.remove();">
             </div>
           </div>
-        </article>
+
+          <div class="content">
+            <h2 class="featured-title">
+              Evading the Algorithm: Increased Propensity for Tax Evasion and Norm Violations in Human–Computer Interactions
+            </h2>
+
+            <div class="row meta" style="margin:.4rem 0 1rem;">
+              <span class="chip">2023</span>
+              <span class="chip">Frontiers in Behavioral Economics</span>
+              <span class="chip">Open Access</span>
+            </div>
+
+            <p>
+              People cheat more when they believe oversight is algorithmic rather than human.
+              Framing the system as a <em>simple automation</em> exacerbates violations,
+              while <em>complex AI</em> framing pulls behavior closer to human inspection.
+              Design &amp; presentation of automated inspectors directly shape compliance.
+            </p>
+
+            <div class="row cta">
+              <a class="btn primary" href="https://www.frontiersin.org/articles/10.3389/frbhe.2023.1227166/full"
+                 target="_blank" rel="noopener">Read article</a>
+              <a class="btn primary" href="https://github.com/NicoMutzner/HCI-Inspection-Game"
+                 target="_blank" rel="noopener">Code</a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -937,7 +1118,7 @@
             <h3>Human–AI Triangle Negotiation</h3>
             <p class="muted">Godazgar, T., <strong>Mutzner, N.</strong>, Yasseri, T. (2025).</p>
             <div class="row">
-              <span class="chip status prep" title="In preparation">
+              <span class="chip status review " title="In preparation">
                 <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M3 17.25V21h3.75L18.81 8.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 000-1.41l-2.34-2.34a1 1 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
                 In Preparation
               </span>
@@ -950,7 +1131,7 @@
             <h3>Human–AI Cooperation: Leveraging AI Norm Reinforcement in a Public Goods Game</h3>
             <p class="muted"><strong>Mutzner, N.</strong>, Yasseri, T. (2025).</p>
             <div class="row">
-              <span class="chip status prep" title="In preparation">
+              <span class="chip status review" title="In preparation">
                 <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M3 17.25V21h3.75L18.81 8.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 000-1.41l-2.34-2.34a1 1 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
                 In Preparation
               </span>
@@ -1026,67 +1207,54 @@
   </div>
 </section>
 
-    <section id="teaching">
+    <section id="teaching" class="band">
       <div class="container">
         <div class="section-head">
           <h2 class="h2">Teaching</h2>
         </div>
 
-        <div class="card section-card">
-          <div class="body">
-            <div class="timeline">
-              <div class="t-item" data-date="2025">
-                <span class="sr-only">2025</span>
-                <h3>Experimental Design in the Age of Artificial Intelligence (BA/MA)</h3>
-                <p class="muted">Complete replication study workflow with synthetic participants.</p>
-              </div>
 
-              <div class="t-item" data-date="2024–2025">
-                <span class="sr-only">2024–2025</span>
-                <h3>Introduction to Social Norms and Cooperation (MA)</h3>
-                <p class="muted">Core topics: social norms, cooperation dynamics, experimental methods, behavioral experiments.</p>
-              </div>
-            </div>
+        <div class="timeline">
+          <div class="t-item" data-date="2025">
+            <h3>Experimental Design in the Age of Artificial Intelligence (BA/MA)</h3>
+            <p>Complete replication study workflow with synthetic participants.</p>
+          </div>
+
+          <div class="t-item" data-date="2024">
+            <h3>Introduction to Social Norms and Cooperation (MA)</h3>
+            <p>Core topics: social norms, cooperation dynamics, experimental methods, behavioral experiments.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="talks">
+    <section id="talks" class="band">
       <div class="container">
         <div class="section-head">
           <h2 class="h2">Conference Talks & Participation</h2>
         </div>
 
-        <div class="card section-card">
-          <div class="body">
-            <div class="timeline">
-              <div class="t-item" data-date="2025">
-                <span class="sr-only">2025</span>
-                <h3>International Conference on Computational Social Science (IC2S2)</h3>
-                <p class="muted">Human–AI Cooperation: Leveraging AI Norm Reinforcement in a Public Goods Game.</p>
-                <div class="row"><span class="chip">Poster</span></div>
-              </div>
+        <div class="timeline">
+          <div class="t-item" data-date="2025">
+            <h3>International Conference on Computational Social Science (IC2S2)</h3>
+            <p>Human–AI Cooperation: Leveraging AI Norm Reinforcement in a Public Goods Game.</p>
+            <div class="row"><span class="chip">Poster</span></div>
+          </div>
 
-              <div class="t-item" data-date="2024">
-                <span class="sr-only">2024</span>
-                <h3>International Meeting on Experimental and Behavioral Social Sciences (IMEBESS)</h3>
-                <p class="muted">Synthetic Replication Games Workshop.</p>
-                <div class="row"><span class="chip">Participation</span><span class="chip">Workshop</span></div>
-              </div>
+          <div class="t-item" data-date="2024">
+            <h3>International Meeting on Experimental and Behavioral Social Sciences (IMEBESS)</h3>
+            <p>Synthetic Replication Games Workshop.</p>
+            <div class="row"><span class="chip">Participation</span><span class="chip">Workshop</span></div>
+          </div>
 
-              <div class="t-item" data-date="2024">
-                <span class="sr-only">2024</span>
-                <h3>Machine Behavior Conference</h3>
-                <div class="row"><span class="chip">Participation</span></div>
-              </div>
+          <div class="t-item" data-date="2024">
+            <h3>Machine Behavior Conference</h3>
+            <div class="row"><span class="chip">Participation</span></div>
+          </div>
 
-              <div class="t-item" data-date="2024">
-                <span class="sr-only">2024</span>
-                <h3>AI+X Summit</h3>
-                <div class="row"><span class="chip">Participation</span></div>
-              </div>
-            </div>
+          <div class="t-item" data-date="2024">
+            <h3>AI+X Summit</h3>
+            <div class="row"><span class="chip">Participation</span></div>
           </div>
         </div>
       </div>
@@ -1156,11 +1324,6 @@
       });
     }
 
-    function init(){
-      initCounts();
-      initTimelineDateLabels();
-    }
-
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', init);
     } else {
@@ -1177,17 +1340,6 @@
       console.assert(Number(pubs?.dataset.target) === 8, 'Publications target should be 8');
       console.assert(Number(cites?.dataset.target) === 96, 'Citations target should be 96');
 
-      // Timeline range detection
-      const ranges = [...document.querySelectorAll('.timeline .t-item[data-date*="–"], .timeline .t-item[data-date*="-"]')];
-      console.assert(ranges.length > 0, 'There should be at least one range date to test');
-      ranges.forEach(el => {
-        const isRange = el.classList.contains('range');
-        if (/\d{4}[\u2013\u2014-]\d{4}/.test(el.dataset.date||'')) {
-          console.assert(isRange, 'Range item should have .range class after init');
-          console.assert(/\d{4}/.test(el.dataset.from||''), 'Range should set data-from');
-          console.assert(/\d{4}/.test(el.dataset.to||''), 'Range should set data-to');
-        }
-      });
 
       // Publications (now tinted): cards should differ from working paper cards (border color)
       const pubCard = document.querySelector('#publications .card');
@@ -1197,11 +1349,6 @@
         const wpStyle = getComputedStyle(wpCard);
         console.assert(pubStyle.borderColor !== wpStyle.borderColor, 'Publications cards should have a distinct (accent) border color');
       }
-
-      // Icon chips present and white
-      const doiChipSvg = document.querySelector('#publications .chip[href^="https://doi.org"] svg');
-      const iconColor = doiChipSvg ? getComputedStyle(doiChipSvg).color : '';
-      console.assert(doiChipSvg && /255\,\s*255\,\s*255/.test(iconColor), 'Chip icons should be white');
 
       // Status chips
       const statusChips = [...document.querySelectorAll('#working-papers .chip.status')];
