@@ -353,7 +353,33 @@
 
     /* ---------- Responsive tweaks ---------- */
     @media (max-width: 900px){
-      /* turn hero-grid into a flex column so we can reorder */
+
+      .nav-inner {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.5rem 0;
+      }
+
+      /* Slightly smaller "HOME" so it doesn’t dominate */
+      .home-link {
+        font-size: 1.1rem;
+      }
+
+      /* Center the nav links and let them wrap neatly */
+      .links {
+        justify-content: center;
+        flex-wrap: wrap;
+        row-gap: 0.25rem;
+      }
+
+      /* Make the Contact button a bit more compact on mobile */
+      .links .btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+      }
+
       .hero-grid {
         display: flex;
         flex-direction: column;
