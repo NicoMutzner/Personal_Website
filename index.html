@@ -862,6 +862,57 @@
 
     .card.section-card { overflow: visible; }
 
+    .to-top-btn {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1rem; /* default for small & medium screens */
+
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 999px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 1px solid color-mix(in srgb, var(--accent) 60%, transparent);
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.75);
+      color: #fff;
+      font-size: 1.4rem;
+      cursor: pointer;
+
+      opacity: 0;
+      pointer-events: none;
+      z-index: 999;
+
+      transition:
+        opacity 0.25s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .to-top-btn:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 12px 30px rgba(15, 23, 42, 0.85),
+        0 0 12px color-mix(in srgb, var(--accent) 60%, transparent);
+    }
+
+    .to-top-btn.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    @media (min-width: 1200px) {
+      .to-top-btn {
+        right: calc((100vw - var(--maxw)) / 2 - 5rem);
+        width: 3.25rem;
+        height: 3.25rem;
+        font-size: 1.6rem;
+      }
+    }
+
  </style>
 
 <!-- Animation Scripts -->
@@ -1439,6 +1490,10 @@
   </footer>
 </section>
 
+<button id="toTop" class="to-top-btn" aria-label="Back to top">
+  ↑
+</button>
+
   <script>
     // Year (safe lookup)
     const yearEl = document.getElementById('year');
@@ -1516,6 +1571,23 @@
     })();
   </script>
 
+    <!-- Back to Top SCript -->
+    <script>
+      const toTop = document.getElementById('toTop');
+
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 600) {
+          toTop.classList.add('visible');
+        } else {
+          toTop.classList.remove('visible');
+        }
+      });
+
+      toTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    </script>
+
   <!-- Structured data for richer previews -->
   <script type="application/ld+json">
   {
@@ -1545,5 +1617,6 @@
     ]
   }
   </script>
+
 </body>
 </html>
