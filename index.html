@@ -120,10 +120,6 @@
       transition: background 0.2s ease;
     }
 
-    .band .chip:hover {
-      background: rgb(50, 90, 184);               /* slightly darker on hover */
-    }
-
     .band .container {
       position: relative;
       z-index: 1;
@@ -168,13 +164,41 @@
     box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset, 0 6px 18px rgba(2,6,23,0.15);
     }
 
-    .btn.primary{
+    .btn.primary {
       background:
         linear-gradient(135deg, var(--accent), var(--accent-2)) padding-box,
-        linear-gradient(135deg, color-mix(in srgb, var(--accent) 60%, transparent),
-                               color-mix(in srgb, var(--accent-2) 60%, transparent)) border-box;
+        linear-gradient(
+          135deg,
+          color-mix(in srgb, var(--accent) 60%, transparent),
+          color-mix(in srgb, var(--accent-2) 60%, transparent)
+        ) border-box;
       border: 1px solid transparent;   /* use the second gradient as the border */
       color: #fff;
+
+      /* keep from your original */
+      background-repeat: no-repeat;
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      box-shadow: 0 6px 18px rgba(2, 6, 23, .25);
+
+      /* NEW: add transitions here */
+      transition: transform 0.2s ease, box-shadow 0.25s ease, filter 0.25s ease;
+    }
+
+    /* hover animation */
+    .btn.primary:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+      box-shadow:
+        0 8px 20px rgba(56, 189, 248, 0.3),
+        0 0 10px color-mix(in srgb, var(--accent) 50%, transparent);
+    }
+
+    /* tap/click */
+    .btn.primary:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 10px rgba(56, 189, 248, 0.25);
+    }
 
       /* prevent artifacts */
       background-repeat: no-repeat;
@@ -1079,7 +1103,7 @@
               <a class="btn primary" href="https://www.frontiersin.org/articles/10.3389/frbhe.2023.1227166/full"
                  target="_blank" rel="noopener">Read article</a>
               <a class="btn primary" href="https://github.com/NicoMutzner/HCI-Inspection-Game"
-                 target="_blank" rel="noopener">Code</a>
+                 target="_blank" rel="noopener">Github Code</a>
             </div>
           </div>
         </div>
