@@ -1,1201 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Nico Mutzner | Human–AI Cooperation Researcher, University of Zurich</title>
-  <meta name="description" content="Official academic website of Nico Mutzner, PhD researcher in Sociology at the University of Zurich, focusing on human–AI cooperation, experimental social science, and behavioral research.">
+  <meta name="description"
+    content="Official academic website of Nico Mutzner, PhD researcher in Sociology at the University of Zurich, focusing on human–AI cooperation, experimental social science, and behavioral research.">
   <meta name="theme-color" content="#0ea5e9" />
-<link rel="canonical" href="https://www.nicomutzner.com/">
-<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-<meta name="author" content="Nico Mutzner">
-<meta http-equiv="content-language" content="en">
+  <link rel="canonical" href="https://www.nicomutzner.com/">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="author" content="Nico Mutzner">
+  <meta http-equiv="content-language" content="en">
+
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+  <!-- Open Graph (Facebook/LinkedIn) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Nico Mutzner">
+  <meta property="og:title" content="Nico Mutzner – Human–AI Interaction Researcher">
+  <meta property="og:description"
+    content="PhD researcher at the University of Zurich studying human–AI cooperation through experimental social science. Publications, projects, and contact.">
+  <meta property="og:url" content="https://www.nicomutzner.com/">
+  <meta property="og:image" content="https://www.nicomutzner.com/images/personal_photo.jpg">
+
+  <!-- Twitter (X) -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Nico Mutzner – Human–AI Cooperation Researcher">
+  <meta name="twitter:description"
+    content="PhD researcher at the University of Zurich studying human–AI cooperation through experimental social science.">
+  <meta name="twitter:image" content="https://www.nicomutzner.com/images/personal_photo.jpg">
+
+  <!-- Preconnect / performance (safe to keep with your existing font includes) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
 
-<!-- Favicons -->
-<link rel="icon" href="/favicon.ico">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 
-<!-- Open Graph (Facebook/LinkedIn) -->
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Nico Mutzner">
-<meta property="og:title" content="Nico Mutzner – Human–AI Interaction Researcher">
-<meta property="og:description" content="PhD researcher at the University of Zurich studying human–AI cooperation through experimental social science. Publications, projects, and contact.">
-<meta property="og:url" content="https://www.nicomutzner.com/">
-<meta property="og:image" content="https://www.nicomutzner.com/images/personal_photo.jpg">
-
-<!-- Twitter (X) -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Nico Mutzner – Human–AI Cooperation Researcher">
-<meta name="twitter:description" content="PhD researcher at the University of Zurich studying human–AI cooperation through experimental social science.">
-<meta name="twitter:image" content="https://www.nicomutzner.com/images/personal_photo.jpg">
-
-<!-- Preconnect / performance (safe to keep with your existing font includes) -->
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="dns-prefetch" href="https://fonts.gstatic.com">
-<link rel="dns-prefetch" href="https://fonts.googleapis.com">
-  
-  <style>
-    /* ---------- Reset & base (dark-only) ---------- */
-    *, *::before, *::after { box-sizing: border-box; }
-    :root {
-      --bg: #0b1020;           /* dark base */
-      --surface: #11162a;      /* card base */
-      --muted: #cbd5e1;        /* text secondary */
-      --text: #e6edf6;         /* text primary */
-      --accent: #22d3ee;    /* cyan 400 */
-      --accent-2: #a855f7;  /* violet 500 */
-      --ring: rgba(56, 189, 248, 0.45);
-      --card-glass: color-mix(in oklab, #0b1020 80%, white 20%);
-      --shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
-      --radius: 16px;
-      --maxw: 1100px;
-      /* responsive glow sizes */
-      --spot-w: clamp(48rem, 42vw, 90rem);
-      --spot-h: clamp(72rem, 78vh, 120rem);
-      /* timeline layout tokens */
-      --label-w: 3.8rem;         /* width of the year column */
-      --label-gap: .35rem;       /* gap between year and line */
-      --line-gap: 1rem;          /* gap between year column and the vertical line */
-      --dot: 14px;               /* dot size */
-      --content-indent: calc(var(--line-gap) + var(--dot));     /* space for line+dot */
-      --gutter-left:  calc(var(--label-w) + var(--label-gap));  /* start of line area */
-      /* media heigh for thumbs */
-      --thumb-h: 220px;
-      --thumb-radius: 16px;
-    }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0; font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji','Segoe UI Emoji';
-      /* Layered gradients */
-      background: radial-gradient(var(--spot-w) var(--spot-h) at -12% 50%, rgba(56,189,248,0.14), transparent 100%),
-                  radial-gradient(var(--spot-w) var(--spot-h) at 112% 50%, rgba(139,92,246,0.14), transparent 100%),
-                  linear-gradient(160deg, rgba(56,189,248,0.05) 0%, rgba(139,92,246,0.05) 100%),
-                  var(--bg);
-      color: var(--text);
-      position: relative;
-      background-attachment: fixed, fixed, fixed, scroll;
-      background-size: auto, auto, 220% 220%, auto;
-      background-position: -10% 50%, 110% 50%, 50% 50%, 0 0;
-      animation: bg-pan 38s ease-in-out infinite alternate;
-    }
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-    .container { width: min(100% - 2rem, var(--maxw)); margin: 0 auto; }
-
-    /* ---------- Background Bands ---------- */
-    .band {
-      position: relative;
-      background: rgba(189, 223, 240, 1); /* your requested color */
-      width: 100vw;                      /* full-bleed background */
-      margin-left: 50%;                  /* trick to escape container limits */
-      transform: translateX(-50%);
-      padding: 3.2rem 0;                 /* consistent vertical spacing */
-      border: none;
-      color: #000; /* all text inside band is black */
-    }
-
-    .band .h2 {
-      color: #000;           /* pure black title */
-    }
-
-    .band .muted {
-      color: #111;           /* optional: darker muted text for better contrast */
-    }
-
-    .band p {
-      color: #222;
-    }
-
-    .band .chip {
-      color: #fff;
-      background: rgb(5, 39, 117);
-      border: 1px solid rgba(0, 0, 0, 0.15);
-      font-weight: 500;
-      padding: 0.3rem 0.75rem;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      transition: background 0.2s ease;
-    }
-
-    .band .container {
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ---------- Top Nav ---------- */
-    .nav { position: sticky; top: 0; z-index: 50; backdrop-filter: saturate(180%) blur(10px);
-      background: color-mix(in srgb, var(--surface) 85%, transparent); border-bottom: 1px solid color-mix(in srgb, var(--muted) 30%, transparent); }
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between; /* home left, links right */
-      padding: .75rem 0;
-    }
-    .home-link {
-      font-weight: 800;
-      font-size: 1.4rem;
-      color: var(--text);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .home-link:hover {
-      color: var(--accent);
-    }
-
-    .nav a { opacity:.9; }
-    .nav a:hover { opacity:1; }
-    .links {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-      flex-wrap: wrap;
-      justify-content: flex-end; /* ensures right alignment */
-    }
-
-    .btn {
-    display:inline-flex; align-items:center;
-    gap:.5rem; padding:.6rem .9rem;
-    border-radius:999px;
-    border:1px solid color-mix(in srgb, var(--muted) 30%, transparent);
-    background: linear-gradient(180deg, color-mix(in oklab, var(--surface), white 2%), color-mix(in oklab, var(--surface), black 2%));
-    box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset, 0 6px 18px rgba(2,6,23,0.15);
-    }
-
-    .btn.primary {
-      background:
-        linear-gradient(135deg, var(--accent), var(--accent-2)) padding-box,
-        linear-gradient(
-          135deg,
-          color-mix(in srgb, var(--accent) 60%, transparent),
-          color-mix(in srgb, var(--accent-2) 60%, transparent)
-        ) border-box;
-      border: 1px solid transparent;   /* use the second gradient as the border */
-      color: #fff;
-
-      /* keep from your original */
-      background-repeat: no-repeat;
-      background-origin: border-box;
-      background-clip: padding-box, border-box;
-      box-shadow: 0 6px 18px rgba(2, 6, 23, .25);
-
-      /* NEW: add transitions here */
-      transition: transform 0.2s ease, box-shadow 0.25s ease, filter 0.25s ease;
-    }
-
-    /* hover animation */
-    .btn.primary:hover {
-      transform: translateY(-2px);
-      filter: brightness(1.08);
-      box-shadow:
-        0 8px 20px rgba(56, 189, 248, 0.3),
-        0 0 10px color-mix(in srgb, var(--accent) 50%, transparent);
-    }
-
-    /* tap/click */
-    .btn.primary:active {
-      transform: translateY(0);
-      box-shadow: 0 4px 10px rgba(56, 189, 248, 0.25);
-    }
-
-      /* prevent artifacts */
-      background-repeat: no-repeat;
-      background-origin: border-box;
-      background-clip: padding-box, border-box; /* gradient fills to the rounded border */
-      box-shadow: 0 6px 18px rgba(2,6,23,.25); /* remove the inherited inset highlight */
-    }
-
-    /* ---------- Hero ---------- */
-
-     .hero {
-      padding: 5rem 0 3rem;
-      text-align: left;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.35fr 1fr;               /* left copy / right identity */
-      gap: clamp(2rem, 5vw, 4rem);
-      align-items: center;
-    }
-
-    /* LEFT column: headline + copy + CTAs */
-    .hero-title{
-      margin: 0 0 1rem;
-      font-weight: 800;
-      line-height: .95;
-      letter-spacing: -.5px;
-      font-size: clamp(2.6rem, 6.8vw, 4.8rem);         /* big + responsive */
-      max-width: 16ch;
-    }
-
-    .hero-subtitle{
-      color: var(--muted);
-      font-size: clamp(1rem, 1.2vw + .6rem, 1.2rem);
-      max-width: 65ch;
-      margin: 0 0 1.6rem;
-    }
-
-    .hero .cta{
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: flex-start;                     /* left-aligned CTAs */
-      margin-bottom: 2rem;
-    }
-
-    /* RIGHT column: photo + identity + stat counters */
-
-    .hero-aside {
-      text-align: center;                /* centers text */
-      display: flex;
-      flex-direction: column;
-      align-items: center;               /* centers the photo + stats horizontally */
-      justify-content: center;
-    }
-
-    .hero-aside .photo-wrap {
-      margin-bottom: 1.25rem;
-    }
-
-    .photo-wrap {
-      width: clamp(180px, 22vw, 280px);
-      height: clamp(180px, 22vw, 280px);
-      border-radius: 50%;
-      overflow: hidden;
-      position: relative;
-      flex-shrink: 0;
-    }
-
-    .hero-photo {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 2px solid var(--accent);
-      box-shadow: var(--shadow);
-    }
-
-    .identity-name{
-        text-align: center;
-      margin: 0.5rem 0 0.25rem;
-      font-weight: 800;
-      letter-spacing: -.3px;
-      line-height: 1.05;
-      font-size: clamp(1.8rem, 3vw, 3rem);
-    }
-
-    .identity-role{
-      text-align: center;
-      margin: .25rem 0 1.1rem;
-      margin-bottom: 1.5rem;
-      color: var(--muted);
-      font-size: 1rem;
-    }
-
-    /* Place your existing stat cards under the identity block */
-    .hero .stats{
-      grid-template-columns: repeat(2, minmax(180px,1fr)); /* two pills on the right */
-      gap: 1rem;
-      margin-top: .75rem;
-    }
-
-    /* Remove any leftover center alignment from older rules */
-    .hero h1, .hero h2 { text-align: left; }
-
-    .stats {
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
-      gap: .9rem;
-      margin-top: 1rem;
-      position: relative;
-      isolation: isolate;
-    }
-    .stat {
-      padding: 1rem;
-      border-radius: 14px;
-      background: linear-gradient(180deg,
-        color-mix(in oklab, var(--surface), white 3%),
-        color-mix(in oklab, var(--surface), black 4%)
-      );
-      border:1px solid color-mix(in srgb, var(--muted) 18%, transparent);
-      text-align:center;
-      position: relative;
-      isolation: isolate;
-    }
-    .stat .num { font-size: 2rem; font-weight: 800; }
-    .stat .lbl { font-size: 1.2rem; color: var(--muted); }
-
-    @keyframes stat-pop {
-      0%{transform:scale(1)} 60%{transform:scale(1.06)} 100%{transform:scale(1)}
-    }
-    .stat .num[data-animated="1"] { animation: stat-pop .35s ease-out; }
-
-    /* Gradient border sweep layer */
-    .stat::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 14px;
-      padding: 1.5px;                      /* border thickness */
-      background-size: 200% 100%;
-      background-position: 0% 0;           /* start on the left */
-      -webkit-mask:
-        linear-gradient(#000 0 0) content-box,
-        linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-              mask-composite: exclude;
-      pointer-events: none;
-      opacity: 0;                          /* hidden initially -> will fade in */
-    }
-    .stats .stat:nth-child(1)::after {
-      background-image: linear-gradient(90deg, var(--accent), var(--accent-2));
-    }
-    .stats .stat:nth-child(2)::after {
-      background-image: linear-gradient(90deg, var(--accent-2), var(--accent));
-    }
-
-    @keyframes stat-border-appear {
-      0%   { opacity: 0;   background-position:   0% 0; }
-      15%  { opacity: .95; background-position:  10% 0; }
-      100% { opacity: .95; background-position: 100% 0; }
-    }
-    .stat.is-animating::after { animation: stat-border-appear 5s ease-out forwards; }
-    .stat:has(.num:hover)::after {
-      animation: stat-border-appear 850ms cubic-bezier(.2,.8,.2,1) forwards;
-    }
-    .stat:hover {
-      transform: translateY(-2px);
-      box-shadow:
-        0 0 14px color-mix(in srgb, var(--accent) 25%, transparent),
-        0 8px 28px rgba(2,6,23,.55);
-      border-color: color-mix(in srgb, var(--accent) 60%, transparent);
-    }
-
-    /* ---------- Responsive tweaks ---------- */
-    @media (max-width: 900px){
-
-      .nav-inner {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        padding: 0.5rem 0;
-      }
-
-      /* Slightly smaller "HOME" so it doesn’t dominate */
-      .home-link {
-        font-size: 1.1rem;
-      }
-
-      /* Center the nav links and let them wrap neatly */
-      .links {
-        justify-content: center;
-        flex-wrap: wrap;
-        row-gap: 0.25rem;
-      }
-
-      /* Make the Contact button a bit more compact on mobile */
-      .links .btn {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.9rem;
-      }
-
-      .hero-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-      }
-
-      /* show photo + identity + stats first */
-      .hero-aside {
-        order: -1;
-      }
-
-      .hero .cta {
-        justify-content: center;
-      }
-
-      .identity-name,
-      .identity-role {
-        text-align: center;
-      }
-
-      .hero .stats {
-        grid-template-columns: repeat(2, minmax(140px,1fr));
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .photo-wrap {
-        width: clamp(140px, 38vw, 220px);
-        height: clamp(140px, 38vw, 220px);
-      }
-
-      .hero-copy {
-        text-align: center !important;
-        align-items: center !important;
-        justify-items: center !important;
-      }
-
-      .hero-title,
-      .hero-subtitle {
-        text-align: center !important;
-        margin-left: auto;
-        margin-right: auto;
-      }
-    }
-
-    /* ---------- Sections ---------- */
-    section { padding: 3.2rem 0; }
-    .section-head { display:flex; align-items:end; justify-content:space-between; gap:1rem; margin-bottom:1.3rem; }
-    .h2 { font-size: clamp(1.4rem, 2.5vw + .4rem, 2rem); margin:0; }
-    .muted { color: var(--muted); }
-
-    .grid { display:grid; gap:1rem; }
-    .grid.cols-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
-    .grid.cols-3 { grid-template-columns: repeat(2, minmax(0,1fr)); }
-    @media (max-width: 900px){
-      .hero-grid { grid-template-columns: 1fr; }
-      .grid.cols-2, .grid.cols-3 { grid-template-columns: 1fr; }
-    }
-
-    /* ---------- About Section ---------- */
-
-    #about {
-      padding-top: 1rem;   /* smaller top padding (optional) */
-    }
-
-    .about-text {
-      max-width: 80ch;          /* controls readable line length */
-      margin: 0 auto 3rem;      /* centers and adds bottom spacing */
-      text-align: center;       /* centers all text */
-      line-height: 1.6;         /* comfortable reading */
-      font-size: 1.05rem;       /* slightly larger body text */
-      color: var(--muted);
-    }
-
-    .about-text strong {
-      color: var(--text);
-    }
-
-    #about .section-head {
-      justify-content: center;   /* center the heading block */
-      text-align: center;        /* ensure text aligns center */
-    }
-
-
-    /* Cards */
-    .card {
-      /* keep your new color/glow; tweak the two color-mix lines if desired */
-      background: linear-gradient(180deg,
-        color-mix(in oklab, var(--surface) 85%, var(--accent) 10%),
-        color-mix(in oklab, var(--surface), black 5%)
-      );
-      border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
-      border-radius: var(--radius);
-      padding: 0;
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: clip;
-      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-    }
-
-    .card::after {
-      content:"";
-      position:absolute;
-      inset:-1px;
-      border-radius:inherit;
-      pointer-events:none;
-      box-shadow:0 0 0 1px color-mix(in srgb, var(--accent) 12%, transparent) inset;
-    }
-
-    .card .body { padding: 1.1rem; }
-    .card .body p { margin: 0 0 .7rem; line-height: 1.6; }
-    .card .body p:last-child { margin-bottom: 0; }
-    .card .body ul { margin: .4rem 0 0; padding-left: 1.2rem; }
-    .card .body li { margin: .25rem 0; }
-    .card h3 { margin: .2rem 0 .5rem; font-size: 1.1rem; line-height: 1.25; font-weight: 700; }
-
-    /* hover works whether the card is wrapped in <a> or not */
-    .card:hover,
-    .card-link-wrapper:hover .card {
-      transform: translateY(-3px);
-      box-shadow:
-        0 10px 30px rgba(2,6,23,.75),
-        0 0 12px color-mix(in srgb, var(--accent) 50%, transparent);
-      border-color: color-mix(in srgb, var(--accent) 55%, transparent);
-    }
-
-    /* ---------- Featured Article (standalone card) ---------- */
-    .featured-card {
-      position: relative;
-      overflow: clip;
-      border-radius: var(--radius);
-      background: linear-gradient(180deg,
-        color-mix(in oklab, var(--surface), white 1%),
-        color-mix(in oklab, var(--surface), black 2%)
-      );
-      border: 3px solid color-mix(in srgb, var(--accent) 55%, transparent);
-      box-shadow:
-        0 0 0 1px color-mix(in srgb, var(--accent) 25%, transparent) inset,
-        0 8px 24px rgba(2,6,23,0.55);
-      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-    }
-
-    .featured-card:hover {
-      transform: translateY(-4px);
-      box-shadow:
-        0 0 24px color-mix(in srgb, var(--accent) 40%, transparent),
-        0 16px 36px rgba(2,6,23,.8);
-      border-color: color-mix(in srgb, var(--accent) 60%, transparent);
-    }
-    
-    .featured-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      pointer-events: none;
-      box-shadow: 0 0 25px color-mix(in srgb, var(--accent) 25%, transparent);
-      opacity: .25;
-    }
-
-    .band .featured-title {
-      color: #000;
-      margin: 0 0 1rem;
-      font-weight: 800;
-    }
-
-
-    /* layout */
-    .featured-grid {
-      display: grid;
-      grid-template-columns: 1.05fr 1.35fr;
-      gap: 2rem;
-      align-items: center;
-    }
-
-    @media (max-width: 900px) {
-      .featured-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* Featured image area: make it taller and responsive */
-    .featured-grid .media {
-      height: clamp(300px, 40vh, 350px); /* adjust to taste */
-    }
-
-    .featured-grid .thumb {
-      height: 100%;
-      overflow: hidden;
-      border-radius: var(--radius);
-    }
-
-    .featured-grid .thumb img.card-thumb {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    /* Remove any leftover card styling */
-    .featured-card,
-    .band .card {
-      border: none;
-      box-shadow: none;
-      background: none;
-    }
-
-    /* eyebrow + title rhythm */
-    .eyebrow{
-      display:inline-block;
-      padding:.2rem .6rem;
-      border-radius:999px;
-      font-size:.75rem;
-      letter-spacing:.3px;
-      color: var(--text);
-      background: color-mix(in oklab, var(--surface), white 6%);
-      border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
-      margin-bottom: .55rem;
-    }
-    .featured-title{
-      margin: 0 0 .6rem;
-      font-size: clamp(1.2rem, 1.1rem + .9vw, 1.6rem);
-      line-height: 1.2;
-      font-weight: 800;
-    }
-
-    /* tighten meta chips a hair */
-    .featured-card .meta .chip { font-size: .75rem; }
-
-    /* ensure internal padding matches the rest of the site */
-    .featured-card .body { padding: 1.2rem; }
-
-    /* ---------- Media thumbnails on cards ---------- */
-    .thumb { position: relative; height: var(--thumb-h); overflow: hidden; isolation: isolate; background:
-      linear-gradient(180deg, color-mix(in oklab, var(--surface) 70%, var(--accent) 30%), color-mix(in oklab, var(--surface), black 10%)); }
-    .thumb img.card-thumb { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transform: scale(1); transition: transform .45s ease, filter .45s ease; }
-    .card:hover .thumb img.card-thumb { transform: scale(1.04); filter: saturate(1.05); }
-    .thumb::after { content:""; position:absolute; inset:0; background: linear-gradient(0deg, rgba(2,6,23,.45), rgba(2,6,23,0)); opacity:.6; transition: opacity .3s ease; }
-    .card:hover .thumb::after { opacity:.35; }
-    .thumb.no-img { display:grid; place-items:center; color:#fff; font-weight:700; letter-spacing:.5px; }
-    .thumb.no-img::before { content: "Media"; opacity:.9; }
-
-    /* Chips with subtle icons */
-    .chip {
-    display:inline-flex;
-    align-items:center;
-    background: rgba(189, 223, 240, 1);
-    gap:.4rem;
-    border: 1.5px solid rgba(20, 60, 105, 0.35);
-    padding:.25rem .55rem;
-    border-radius:999px;
-    font-size:0.9rem;
-    font-weight: 600;
-    color: #000;
-     }
-
-    .chip svg {
-      width: 16px;
-      height: 16px;
-      color: rgb(20, 60, 105);
-      display: inline-block;
-      flex: 0 0 auto;
-      vertical-align: -2px;
-      overflow: visible;
-    }
-
-    .chip.status.review {
-      color: rgb(20, 60, 105);
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-    /* (if you need this row utility, keep it standalone – not nested) */
-    .row { display:flex; gap:.7rem; align-items:center; flex-wrap:wrap; }
-
-    /* ---------- Publications: distinct CARD style (light blue tint) ---------- */
-    #publications .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr); /* exactly two per row */
-      gap: 1.5rem;
-      align-items: stretch;
-    }
-
-    @media (max-width: 900px) {
-      #publications .grid {
-        grid-template-columns: 1fr; /* stack on smaller screens */
-      }
-    }
-
-    #publications .card {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-
-    #publications .card .body {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-    }
-
-    /* ---------- Timeline (Talks/Teaching/Collab) ---------- */
-    .timeline {
-      position: relative;
-      margin-left: 0;
-      padding-left: calc(var(--gutter-left) + var(--content-indent));
-      color: rgb(20, 60, 105);
-    }
-
-    /* vertical line */
-    .timeline::before{
-      content:"";
-      position:absolute;
-      left: calc(var(--gutter-left) + var(--line-gap));
-      top:.25rem; bottom:.25rem;
-      width:2px;
-      background: currentColor;
-      opacity:.9;
-    }
-
-    .t-item{
-      position: relative;
-      margin: 1.1rem 0;
-      /* this is the space for the line + dot */
-      padding-left: calc(var(--line-gap) + var(--dot));
-    }
-
-    /* the dot */
-    .t-item::before{
-      content:"";
-      position:absolute;
-      left: -1.25rem;
-      top:.45rem;
-      width: var(--dot);
-      height: var(--dot);
-      border-radius:999px;
-      background: currentColor;
-      box-shadow:
-        0 0 0 2px color-mix(in srgb, currentColor 60%, transparent),
-        0 0 0 6px color-mix(in srgb, currentColor 15%, transparent);
-      z-index: 1;
-    }
-
-    /* the year label (single year or range) */
-    .t-item::after{
-      content: attr(data-date);
-      position:absolute;
-      left: -5rem;
-      top: 0.32rem;
-      width: var(--label-w);
-      text-align: left;
-      line-height: 1.1;
-      color: color-mix(in srgb, currentColor 70%, #000); /* readable against band */
-      font-weight: 600;
-      font-variant-numeric: tabular-nums;
-      pointer-events:none;
-    }
-
-    /* multi-line range (e.g., 2024–2025) */
-    .t-item.range::after{
-      content: attr(data-from) "\a" "– " attr(data-to);
-      white-space: pre;
-      text-align: center;
-    }
-
-    /* ---------- Footer ---------- */
-    footer {
-      margin-top: 6rem;
-      border-top: 1px solid color-mix(in srgb, var(--muted) 20%, transparent);
-      padding: 1.5rem 0 1.5rem;
-    }
-
-    .link { position:relative; }
-    .link.active::after { content:""; position:absolute; left:0; right:0; bottom:-8px; height:3px; border-radius:3px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
-
-    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
-    .kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size:.8rem; background: color-mix(in srgb, var(--muted) 20%, transparent); padding:.1rem .35rem; border-radius:.4rem; }
-
-    .impact { margin-top: 1rem; padding:.8rem 1rem; border-left:3px solid color-mix(in srgb, var(--accent) 50%, transparent); background: color-mix(in oklab, var(--surface), white 3%); border-radius: 8px; }
-    .impact strong { color: var(--text); }
-
-    @keyframes fade-up {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Contact section — spotlight + fade-in + animated gradient title (no background override) */
-    .contact-full {
-      position: relative;
-      overflow: hidden;
-      text-align: center;
-      padding: 4rem 0 0rem; /* breathing room */
-      /* keep existing site background — no background property here */
-      animation: fade-up 1s ease-out both;
-    }
-
-    /* keep content above the spotlight */
-    .contact-inner, footer { position: relative; z-index: 1; }
-
-    /* big inviting headline with animated gradient */
-    .contact-title {
-      font-size: clamp(3rem, 5vw + 2rem, 4rem);
-      font-weight: 800;
-      line-height: 1.05;
-      margin: 0 0 .8rem;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-size: 200% 200%;
-      animation: gradient-pan 4s ease-in-out infinite alternate;
-    }
-
-    /* subtitle */
-    .contact-subtitle {
-      color: var(--muted);
-      font-size: 1.1rem;
-      max-width: 650px;
-      margin: 0 auto 2rem;
-      line-height: 1.6;
-    }
-
-    /* card stays centered and tidy */
-    .contact-card {
-      max-width: 600px;
-      margin: 0 auto;
-      text-align: left;
-    }
-    .contact-card .body {
-     text-align: center;
-     }
-
-    /* links row */
-    .contact-links {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-top: 1.4rem;
-    }
-
-
-    /* animations */
-    @keyframes fade-up {
-      from { opacity: 0; transform: translateY(30px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes gradient-pan {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
-    }
-
-    /* accessibility: respect reduced motion */
-    @media (prefers-reduced-motion: reduce){
-      .contact-full { animation: none; }
-      .contact-title { animation: none; }
-    }
-
-    .card.section-card { overflow: visible; }
-
-    .to-top-btn {
-      position: fixed;
-      bottom: 1.5rem;
-      right: 1rem; /* default for small & medium screens */
-
-      width: 2.75rem;
-      height: 2.75rem;
-      border-radius: 999px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      border: 1px solid color-mix(in srgb, var(--accent) 60%, transparent);
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.75);
-      color: #fff;
-      font-size: 1.4rem;
-      cursor: pointer;
-
-      opacity: 0;
-      pointer-events: none;
-      z-index: 999;
-
-      transition:
-        opacity 0.25s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-    }
-
-    .to-top-btn:hover {
-      transform: translateY(-2px);
-      box-shadow:
-        0 12px 30px rgba(15, 23, 42, 0.85),
-        0 0 12px color-mix(in srgb, var(--accent) 60%, transparent);
-    }
-
-    .to-top-btn.visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    @media (min-width: 1200px) {
-      .to-top-btn {
-        right: calc((100vw - var(--maxw)) / 2 - 5rem);
-        width: 3.25rem;
-        height: 3.25rem;
-        font-size: 1.6rem;
-      }
-    }
-
- </style>
-
-<!-- Animation Scripts -->
-    <!-- Count animation -->
-    <script>
-    (() => {
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      function animateCount(el, to, {duration=500, easeFn} = {}) {
-        const start = 0;
-        const startTime = performance.now();
-        const ease = easeFn || ((t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)));
-
-        function frame(now) {
-          const p = Math.min(1, (now - startTime) / duration);
-          const val = Math.round(start + (to - start) * ease(p));
-          el.textContent = val.toLocaleString();
-          if (p < 1) requestAnimationFrame(frame);
-          else el.textContent = to.toLocaleString(); // snap exact
-        }
-        requestAnimationFrame(frame);
-      }
-
-      function initCounters() {
-        const nums = document.querySelectorAll('.stat .num[data-target]');
-        if (!nums.length) return;
-
-        const run = (el) => {
-          const target = Number(el.getAttribute('data-target')) || 0;
-          if (prefersReduced) { el.textContent = target.toLocaleString(); return; }
-          // guard: only run once
-          if (el.dataset.animated) return;
-          el.dataset.animated = '1';
-          animateCount(el, target, { duration: 2500 });
-        };
-
-        // Trigger when stats section is visible
-        const io = new IntersectionObserver((entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) {
-              e.target.querySelectorAll('.num[data-target]').forEach(run);
-              io.unobserve(e.target);
-            }
-          });
-        }, { rootMargin: '0px 0px -10% 0px', threshold: 0.15 });
-
-        // Observe the whole stats grid
-        const stats = document.querySelector('.stats');
-        if (stats) io.observe(stats);
-        else nums.forEach(run); // fallback if .stats not found
-      }
-
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initCounters);
-      } else {
-        initCounters();
-      }
-    })();
-    </script>
-
-    <!-- Border Animation Citation Counts -->
-    <script>
-    (() => {
-      const supportsHas = CSS.supports?.('selector(:has(*))');
-
-      function armPerCardAnimation() {
-        const cards = document.querySelectorAll('.stats .stat');
-        if (!cards.length) return;
-
-        // Each card gets its own observer -> separate triggers
-        cards.forEach((card) => {
-          const io = new IntersectionObserver((entries) => {
-            entries.forEach((e) => {
-              if (!e.isIntersecting) return;
-              // Start the appear+sweep once per card
-              card.classList.add('is-animating');
-              // Stop observing this card after first run
-              io.unobserve(card);
-            });
-          }, { threshold: 0.3 });
-          io.observe(card);
-        });
-
-        // Fallback re-trigger on hover for browsers without :has()
-        if (!supportsHas) {
-          cards.forEach((card) => {
-            const num = card.querySelector('.num');
-            if (!num) return;
-            num.addEventListener('mouseenter', () => {
-              card.classList.remove('is-animating');
-              // force reflow to restart animation
-              void card.offsetWidth;
-              card.classList.add('is-animating');
-            });
-          });
-        }
-      }
-
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', armPerCardAnimation);
-      } else {
-        armPerCardAnimation();
-      }
-    })();
-    </script>
 
 </head>
+
 <body>
-<!-- Icon sprite: hidden, reusable icons -->
+  <!-- Icon sprite: hidden, reusable icons -->
   <svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
 
     <!-- DOI / chain link -->
     <symbol id="icon-link" viewBox="0 0 24 24">
-        <path fill="currentColor"
-            d="M3.9 12a4.1 4.1 0 014.1-4.1h3v2h-3a2.1 2.1 0 100 4.2h3v2h-3A4.1 4.1 0 013.9 12zm12-4.1h-3v2h3a2.1 2.1 0 010 4.2h-3v2h3a4.1 4.1 0 000-8.2z"/>
+      <path fill="currentColor"
+        d="M3.9 12a4.1 4.1 0 014.1-4.1h3v2h-3a2.1 2.1 0 100 4.2h3v2h-3A4.1 4.1 0 013.9 12zm12-4.1h-3v2h3a2.1 2.1 0 010 4.2h-3v2h3a4.1 4.1 0 000-8.2z" />
     </symbol>
   </svg>
 
-    <header class="nav">
-      <div class="container nav-inner">
-        <div class="brand">
-          <a class="home-link" href="#home">Home</a>
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <a class="home-link" href="#home">Home</a>
+      </div>
+
+      <nav class="links" aria-label="Primary">
+        <a class="link" href="#about">About</a>
+        <a class="link" href="#publications">Publications</a>
+        <a class="link" href="#working-papers">Working Papers</a>
+        <a class="link" href="#projects">Labs & Projects</a>
+        <a class="link" href="#teaching">Teaching</a>
+        <a class="link" href="#talks">Conferences</a>
+        <a class="btn" href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home" class="hero">
+    <div class="container hero-grid">
+      <!-- LEFT: headline, copy, CTAs -->
+      <section class="hero-copy">
+        <h1 class="hero-title">
+          Exploring how Humans and Technology Interact
+        </h1>
+
+        <p class="hero-subtitle">
+          I study human–AI interaction and cooperation through experimental methods.
+          Below is an overview of my work, working papers, teaching and selected projects.
+        </p>
+
+        <div class="cta">
+          <a class="btn primary" href="#publications">View Publications</a>
+          <a class="btn primary" href="mailto:nico.mutzner@uzh.ch">Email</a>
+        </div>
+      </section>
+
+      <!-- RIGHT: photo, name/role, counters -->
+      <aside class="hero-aside">
+        <div class="photo-wrap lg">
+          <img src="images/personal_photo.jpg" alt="Portrait of Nico Mutzner" class="hero-photo" loading="lazy">
         </div>
 
-        <nav class="links" aria-label="Primary">
-          <a class="link" href="#about">About</a>
-          <a class="link" href="#publications">Publications</a>
-          <a class="link" href="#working-papers">Working Papers</a>
-          <a class="link" href="#projects">Labs & Projects</a>
-          <a class="link" href="#teaching">Teaching</a>
-          <a class="link" href="#talks">Conferences</a>
-          <a class="btn" href="#contact">Contact</a>
-        </nav>
-      </div>
-    </header>
+        <h2 class="identity-name">Nico Mutzner</h2>
+        <p class="identity-role">PhD Student · Sociology</p>
 
-    <main id="home" class="hero">
-      <div class="container hero-grid">
-        <!-- LEFT: headline, copy, CTAs -->
-        <section class="hero-copy">
-          <h1 class="hero-title">
-            Exploring how Humans and Technology Interact
-          </h1>
-
-          <p class="hero-subtitle">
-            I study human–AI interaction and cooperation through experimental methods.
-            Below is an overview of my work, working papers, teaching and selected projects.
-          </p>
-
-          <div class="cta">
-            <a class="btn primary" href="#publications">View Publications</a>
-            <a class="btn primary" href="mailto:nico.mutzner@uzh.ch">Email</a>
+        <div class="stats">
+          <div class="stat">
+            <div class="num" id="count-pubs" data-target="8">8</div>
+            <div class="lbl">Publications</div>
           </div>
-        </section>
-
-        <!-- RIGHT: photo, name/role, counters -->
-        <aside class="hero-aside">
-          <div class="photo-wrap lg">
-            <img src="images/personal_photo.jpg" alt="Portrait of Nico Mutzner" class="hero-photo" loading="lazy">
+          <div class="stat">
+            <div class="num" id="count-cites" data-target="100">100</div>
+            <div class="lbl">Citations</div>
           </div>
+        </div>
+      </aside>
+    </div>
+  </main>
 
-          <h2 class="identity-name">Nico Mutzner</h2>
-          <p class="identity-role">PhD Student · Sociology</p>
-
-            <div class="stats">
-                <div class="stat">
-                  <div class="num" id="count-pubs" data-target="8">8</div>
-                  <div class="lbl">Publications</div>
-                </div>
-                <div class="stat">
-                  <div class="num" id="count-cites" data-target="100">100</div>
-                  <div class="lbl">Citations</div>
-                </div>
-              </div>
-            </aside>
+  <section id="about">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="h2">About Me</h2>
       </div>
-    </main>
 
-    <section id="about">
-      <div class="container">
-        <div class="section-head">
-          <h2 class="h2">About Me</h2>
+      <div class="about-text">
+        <p>
+          I am a PhD student in Sociology at the University of Zurich studying Human–AI cooperation in social dilemmas
+          and group decision-making.
+          My work combines behavioral experiments with sociological concepts.
+          I teach about AI’s impact on social structures and methods for using AI in research, including synthetic
+          replications.
+        </p>
+
+        <div class="row" style="justify-content:center; margin-top:1.4rem;">
+          <span class="chip">Human–AI Cooperation</span>
+          <span class="chip">AI Agents</span>
+          <span class="chip">Behavioural Experiments</span>
+          <span class="chip">Mixed Methods</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="featured" class="band">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="h2">Featured Article</h2>
+      </div>
+
+      <div class="featured-grid">
+        <div class="media">
+          <div class="thumb">
+            <img class="card-thumb" src="images/pubs/evading-the-algorithm.jpg"
+              alt="Cover image for 'Evading the Algorithm' article" loading="lazy"
+              onerror="this.closest('.thumb').classList.add('no-img'); this.remove();">
+          </div>
         </div>
 
-        <div class="about-text">
+        <div class="content">
+          <h2 class="featured-title">
+            Evading the Algorithm: Increased Propensity for Tax Evasion and Norm Violations in Human–Computer
+            Interactions
+          </h2>
+
+          <div class="row meta" style="margin:.4rem 0 1rem;">
+            <span class="chip">2023</span>
+            <span class="chip">Frontiers in Behavioral Economics</span>
+            <span class="chip">Open Access</span>
+          </div>
+
           <p>
-            I am a PhD student in Sociology at the University of Zurich studying Human–AI cooperation in social dilemmas and group decision-making.
-            My work combines behavioral experiments with sociological concepts.
-            I teach about AI’s impact on social structures and methods for using AI in research, including synthetic replications.
+            People cheat more when they believe oversight is algorithmic rather than human.
+            Framing the system as a <em>simple automation</em> exacerbates violations,
+            while <em>complex AI</em> framing pulls behavior closer to human inspection.
+            Design &amp; presentation of automated inspectors directly shape compliance.
           </p>
 
-          <div class="row" style="justify-content:center; margin-top:1.4rem;">
-            <span class="chip">Human–AI Cooperation</span>
-            <span class="chip">AI Agents</span>
-            <span class="chip">Behavioural Experiments</span>
-            <span class="chip">Mixed Methods</span>
+          <div class="row cta">
+            <a class="btn primary" href="https://www.frontiersin.org/articles/10.3389/frbhe.2023.1227166/full"
+              target="_blank" rel="noopener">Read article</a>
+            <a class="btn primary" href="https://github.com/NicoMutzner/HCI-Inspection-Game" target="_blank"
+              rel="noopener">Github Code</a>
           </div>
         </div>
       </div>
-    </section>
-
-    <section id="featured" class="band">
-      <div class="container">
-        <div class="section-head">
-          <h2 class="h2">Featured Article</h2>
-        </div>
-
-        <div class="featured-grid">
-          <div class="media">
-            <div class="thumb">
-              <img class="card-thumb" src="images/pubs/evading-the-algorithm.jpg"
-                   alt="Cover image for 'Evading the Algorithm' article"
-                   loading="lazy"
-                   onerror="this.closest('.thumb').classList.add('no-img'); this.remove();">
-            </div>
-          </div>
-
-          <div class="content">
-            <h2 class="featured-title">
-              Evading the Algorithm: Increased Propensity for Tax Evasion and Norm Violations in Human–Computer Interactions
-            </h2>
-
-            <div class="row meta" style="margin:.4rem 0 1rem;">
-              <span class="chip">2023</span>
-              <span class="chip">Frontiers in Behavioral Economics</span>
-              <span class="chip">Open Access</span>
-            </div>
-
-            <p>
-              People cheat more when they believe oversight is algorithmic rather than human.
-              Framing the system as a <em>simple automation</em> exacerbates violations,
-              while <em>complex AI</em> framing pulls behavior closer to human inspection.
-              Design &amp; presentation of automated inspectors directly shape compliance.
-            </p>
-
-            <div class="row cta">
-              <a class="btn primary" href="https://www.frontiersin.org/articles/10.3389/frbhe.2023.1227166/full"
-                 target="_blank" rel="noopener">Read article</a>
-              <a class="btn primary" href="https://github.com/NicoMutzner/HCI-Inspection-Game"
-                 target="_blank" rel="noopener">Github Code</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    </div>
+  </section>
 
   <section id="publications">
-  <div class="container">
-    <div class="section-head">
-      <h2 class="h2">Publications</h2>
-    </div>
+    <div class="container">
+      <div class="section-head">
+        <h2 class="h2">Publications</h2>
+      </div>
 
-    <div class="grid cols-3">
-      <!-- 1 -->
-      <a href="https://doi.org/10.3389/frbhe.2025.1494271" target="_blank" rel="noopener" class="card-link-wrapper" aria-label="Open DOI for Individualism paper">
-        <article class="card">
-          <div class="thumb">
-            <img class="card-thumb" src="images/pubs/individualism.jpg" alt="Cover or thematic image for Individualism paper" loading="lazy"
-                 onerror="this.closest('.thumb').classList.add('no-img'); this.remove();">
-          </div>
-          <div class="body">
-            <h3>Individualism: The end of social cohesion? The effects of inequality and group identity on cooperation</h3>
-            <p class="muted">Senn, S., <strong>Mutzner, N.</strong>, Oberhauser, V., & Rauhut, H. (2025). <em>Frontiers in Behavioral Economics</em>, 4.</p>
-          </div>
-        </article>
-      </a>
+      <div class="grid cols-3">
+        <!-- 1 -->
+        <a href="https://doi.org/10.3389/frbhe.2025.1494271" target="_blank" rel="noopener" class="card-link-wrapper"
+          aria-label="Open DOI for Individualism paper">
+          <article class="card">
+            <div class="thumb">
+              <img class="card-thumb" src="images/pubs/individualism.jpg"
+                alt="Cover or thematic image for Individualism paper" loading="lazy"
+                onerror="this.closest('.thumb').classList.add('no-img'); this.remove();">
+            </div>
+            <div class="body">
+              <h3>Individualism: The end of social cohesion? The effects of inequality and group identity on cooperation
+              </h3>
+              <p class="muted">Senn, S., <strong>Mutzner, N.</strong>, Oberhauser, V., & Rauhut, H. (2025).
+                <em>Frontiers in Behavioral Economics</em>, 4.</p>
+            </div>
+          </article>
+        </a>
 
-      <!-- 2 -->
-      <a href="https://doi.org/10.1093/scipol/scae084" target="_blank" rel="noopener" class="card-link-wrapper" aria-label="Open DOI for Urban Drones expert survey">
-        <article class="card">
-          <div class="thumb">
-            <img class="card-thumb" src="images/pubs/urban-drones-survey.jpg" alt="Cover or thematic image for Urban Drones survey paper" loading="lazy"
-                 onerror="this.closest('.thumb').classList.add('no-img'); this.remove();">
-          </div>
-          <div class="body">
-            <h3>‘We Need Time…’: An Expert Survey on Societal Acceptance of Urban Drones</h3>
-            <p class="muted">Wang, N., <strong>Mutzner, N.</strong>, & Blanchet, K. (2025). <em>Science and Public Policy</em>, 52(3), 356–374.</p>
-          </div>
-        </article>
-      </a>
+        <!-- 2 -->
+        <a href="https://doi.org/10.1093/scipol/scae084" target="_blank" rel="noopener" class="card-link-wrapper"
+          aria-label="Open DOI for Urban Drones expert survey">
+          <article class="card">
+            <div class="thumb">
+              <img class="card-thumb" src="images/pubs/urban-drones-survey.jpg"
+                alt="Cover or thematic image for Urban Drones survey paper" loading="lazy"
+                onerror="this.closest('.thumb').classList.add('no-img'); this.remove();">
+            </div>
+            <div class="body">
+              <h3>‘We Need Time…’: An Expert Survey on Societal Acceptance of Urban Drones</h3>
+              <p class="muted">Wang, N., <strong>Mutzner, N.</strong>, & Blanchet, K. (2025). <em>Science and Public
+                  Policy</em>, 52(3), 356–374.</p>
+            </div>
+          </article>
+        </a>
 
-      <!-- Comment out since it's featured
+        <!-- Comment out since it's featured
       <a href="https://doi.org/10.3389/frbhe.2023.1227166" target="_blank" rel="noopener" class="card-link-wrapper" aria-label="Open DOI for Evading the Algorithm">
         <article class="card">
           <div class="thumb">
@@ -1209,62 +244,74 @@
         </article>
       </a>-->
 
-      <!-- 4 -->
-      <a href="https://doi.org/10.1016/j.techsoc.2023.102377" target="_blank" rel="noopener" class="card-link-wrapper" aria-label="Open DOI for Urban Drones scoping review">
+        <!-- 4 -->
+        <a href="https://doi.org/10.1016/j.techsoc.2023.102377" target="_blank" rel="noopener" class="card-link-wrapper"
+          aria-label="Open DOI for Urban Drones scoping review">
+          <article class="card">
+            <div class="thumb">
+              <img class="card-thumb" src="images/pubs/urban-drones-review.jpg"
+                alt="Cover or thematic image for Urban Drones review paper" loading="lazy"
+                onerror="this.closest('.thumb').classList.add('no-img'); this.remove();">
+            </div>
+            <div class="body">
+              <h3>Societal acceptance of urban drones: A scoping literature review</h3>
+              <p class="muted">Wang, N., <strong>Mutzner, N.</strong>, & Blanchet, K. (2023). <em>Technology in
+                  Society</em>, 75, 102377.</p>
+            </div>
+          </article>
+        </a>
+
+        <!-- 5 -->
+        <a href="https://doi.org/10.1145/3491102.3517502" target="_blank" rel="noopener" class="card-link-wrapper"
+          aria-label="Open DOI for CHI 2022 paper">
+          <article class="card">
+            <div class="thumb">
+              <img class="card-thumb" src="images/pubs/chi-future-cities.jpg"
+                alt="Cover or thematic image for CHI Future Cities paper" loading="lazy"
+                onerror="this.closest('.thumb').classList.add('no-img'); this.remove();">
+            </div>
+            <div class="body">
+              <h3>AI beyond Deus ex Machina – Reimagining Intelligence in Future Cities with Urban Experts</h3>
+              <p class="muted">Mlynar, J., Bahrami, F., Ourednik, A., <strong>Mutzner, N.</strong>, Verma, H., & Alavi,
+                H. (2022). <em>Proceedings of CHI 2022</em>, 1–13.</p>
+            </div>
+          </article>
+        </a>
+
+        <!-- 6 (no URL available; keep as plain card) -->
         <article class="card">
           <div class="thumb">
-            <img class="card-thumb" src="images/pubs/urban-drones-review.jpg" alt="Cover or thematic image for Urban Drones review paper" loading="lazy"
-                 onerror="this.closest('.thumb').classList.add('no-img'); this.remove();">
+            <img class="card-thumb" src="images/pubs/imaginaire-topology.jpg"
+              alt="Cover or thematic image for Deep City imaginaire contribution" loading="lazy"
+              onerror="this.closest('.thumb').classList.add('no-img'); this.remove();">
           </div>
           <div class="body">
-            <h3>Societal acceptance of urban drones: A scoping literature review</h3>
-            <p class="muted">Wang, N., <strong>Mutzner, N.</strong>, & Blanchet, K. (2023). <em>Technology in Society</em>, 75, 102377.</p>
+            <h3>A topology of the imaginaire: Urban experts’ vision of AI — Deep City: Climate crisis, democracy and the
+              digital</h3>
+            <p class="muted">Ourednik, A., Mlynář, J., Bahrami, F., <strong>Mutzner, N.</strong>, & Alavi, H. (2021,
+              March). <em>Conference contribution</em>.</p>
           </div>
         </article>
-      </a>
 
-      <!-- 5 -->
-      <a href="https://doi.org/10.1145/3491102.3517502" target="_blank" rel="noopener" class="card-link-wrapper" aria-label="Open DOI for CHI 2022 paper">
-        <article class="card">
-          <div class="thumb">
-            <img class="card-thumb" src="images/pubs/chi-future-cities.jpg" alt="Cover or thematic image for CHI Future Cities paper" loading="lazy"
-                 onerror="this.closest('.thumb').classList.add('no-img'); this.remove();">
-          </div>
-          <div class="body">
-            <h3>AI beyond Deus ex Machina – Reimagining Intelligence in Future Cities with Urban Experts</h3>
-            <p class="muted">Mlynar, J., Bahrami, F., Ourednik, A., <strong>Mutzner, N.</strong>, Verma, H., & Alavi, H. (2022). <em>Proceedings of CHI 2022</em>, 1–13.</p>
-          </div>
-        </article>
-      </a>
-
-      <!-- 6 (no URL available; keep as plain card) -->
-      <article class="card">
-        <div class="thumb">
-          <img class="card-thumb" src="images/pubs/imaginaire-topology.jpg" alt="Cover or thematic image for Deep City imaginaire contribution" loading="lazy"
-               onerror="this.closest('.thumb').classList.add('no-img'); this.remove();">
-        </div>
-        <div class="body">
-          <h3>A topology of the imaginaire: Urban experts’ vision of AI — Deep City: Climate crisis, democracy and the digital</h3>
-          <p class="muted">Ourednik, A., Mlynář, J., Bahrami, F., <strong>Mutzner, N.</strong>, & Alavi, H. (2021, March). <em>Conference contribution</em>.</p>
-        </div>
-      </article>
-
-      <!-- 7 -->
-      <a href="https://doi.org/10.1145/3488234" target="_blank" rel="noopener" class="card-link-wrapper" aria-label="Open DOI for Interactions essay">
-        <article class="card">
-          <div class="thumb">
-            <img class="card-thumb" src="images/pubs/failed-cities.jpg" alt="Cover or thematic image for Interactions essay" loading="lazy"
-                 onerror="this.closest('.thumb').classList.add('no-img'); this.remove();">
-          </div>
-          <div class="body">
-            <h3>Social media platforms are failed cities</h3>
-            <p class="muted">Ourednik, A., Mlynář, J., <strong>Mutzner, N.</strong>, & Alavi, H. (2021). <em>Interactions</em>, 28(6), 62–66.</p>
-          </div>
-        </article>
-      </a>
+        <!-- 7 -->
+        <a href="https://doi.org/10.1145/3488234" target="_blank" rel="noopener" class="card-link-wrapper"
+          aria-label="Open DOI for Interactions essay">
+          <article class="card">
+            <div class="thumb">
+              <img class="card-thumb" src="images/pubs/failed-cities.jpg"
+                alt="Cover or thematic image for Interactions essay" loading="lazy"
+                onerror="this.closest('.thumb').classList.add('no-img'); this.remove();">
+            </div>
+            <div class="body">
+              <h3>Social media platforms are failed cities</h3>
+              <p class="muted">Ourednik, A., Mlynář, J., <strong>Mutzner, N.</strong>, & Alavi, H. (2021).
+                <em>Interactions</em>, 28(6), 62–66.</p>
+            </div>
+          </article>
+        </a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- Working Papers -->
   <section id="working-papers">
@@ -1274,39 +321,53 @@
       </div>
       <div class="grid cols-3">
         <article class="card">
-          <div class="thumb"><img class="card-thumb" src="images/wp/triangle-negotiation.jpg" alt="Illustration for Human–AI Triangle Negotiation working paper" loading="lazy" onerror="this.closest('.thumb').classList.add('no-img'); this.remove();"></div>
+          <div class="thumb"><img class="card-thumb" src="images/wp/triangle-negotiation.jpg"
+              alt="Illustration for Human–AI Triangle Negotiation working paper" loading="lazy"
+              onerror="this.closest('.thumb').classList.add('no-img'); this.remove();"></div>
           <div class="body">
             <h3>Human–AI Triangle Negotiation</h3>
             <p class="muted">Godazgar, T., <strong>Mutzner, N.</strong>, Yasseri, T. (2025).</p>
             <div class="row">
               <span class="chip status review " title="In preparation">
-                <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M3 17.25V21h3.75L18.81 8.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 000-1.41l-2.34-2.34a1 1 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+                  <path
+                    d="M3 17.25V21h3.75L18.81 8.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 000-1.41l-2.34-2.34a1 1 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+                </svg>
                 In Preparation
               </span>
             </div>
           </div>
         </article>
         <article class="card">
-          <div class="thumb"><img class="card-thumb" src="images/wp/ai-norm-reinforcement.jpg" alt="Illustration for Human–AI Cooperation public goods working paper" loading="lazy" onerror="this.closest('.thumb').classList.add('no-img'); this.remove();"></div>
+          <div class="thumb"><img class="card-thumb" src="images/wp/ai-norm-reinforcement.jpg"
+              alt="Illustration for Human–AI Cooperation public goods working paper" loading="lazy"
+              onerror="this.closest('.thumb').classList.add('no-img'); this.remove();"></div>
           <div class="body">
             <h3>Human–AI Cooperation: Leveraging AI Norm Reinforcement in a Public Goods Game</h3>
             <p class="muted"><strong>Mutzner, N.</strong>, Yasseri, T. (2025).</p>
             <div class="row">
               <span class="chip status review" title="In preparation">
-                <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M3 17.25V21h3.75L18.81 8.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 000-1.41l-2.34-2.34a1 1 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+                  <path
+                    d="M3 17.25V21h3.75L18.81 8.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 000-1.41l-2.34-2.34a1 1 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+                </svg>
                 In Preparation
               </span>
             </div>
           </div>
         </article>
         <article class="card">
-          <div class="thumb"><img class="card-thumb" src="images/wp/neutralization-techniques.jpg" alt="Illustration for Scientific Misconduct case study working paper" loading="lazy" onerror="this.closest('.thumb').classList.add('no-img'); this.remove();"></div>
+          <div class="thumb"><img class="card-thumb" src="images/wp/neutralization-techniques.jpg"
+              alt="Illustration for Scientific Misconduct case study working paper" loading="lazy"
+              onerror="this.closest('.thumb').classList.add('no-img'); this.remove();"></div>
           <div class="body">
             <h3>Science Became Pure Fantasy – A Case Study on Neutralization Techniques in Scientific Misconduct</h3>
             <p class="muted"><strong>Mutzner, N.</strong>, Velicu, A., Rauhut, H. (2025).</p>
             <div class="row">
               <span class="chip status review" title="Under review">
-                <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a9 9 0 100 18 9 9 0 000-18zm.75 4h-1.5v6l5.25 3.15.75-1.23-4.5-2.67V6z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+                  <path d="M12 2a9 9 0 100 18 9 9 0 000-18zm.75 4h-1.5v6l5.25 3.15.75-1.23-4.5-2.67V6z" />
+                </svg>
                 Under Review
               </span>
             </div>
@@ -1317,275 +378,199 @@
   </section>
 
   <section id="projects">
-  <div class="container">
-    <div class="section-head">
-      <h2 class="h2">Labs & Projects</h2>
-    </div>
-
-    <div class="grid cols-3">
-      <!-- SOHAM -->
-      <a href="https://www.tcd.ie/soham/" target="_blank" rel="noopener" class="card-link-wrapper" aria-label="Open SOHAM Lab website">
-        <div class="card">
-          <div class="thumb">
-            <img class="card-thumb" src="images/projects/soham.jpg" alt="Photo or logo for SOHAM Lab" loading="lazy"
-                 onerror="this.closest('.thumb').classList.add('no-img'); this.remove();">
-          </div>
-          <div class="body">
-            <h3>Society of Human and Machines (SOHAM)</h3>
-            <p class="muted">Joint research centre dedicated to understanding how AI and automation are reshaping society.</p>
-          </div>
-        </div>
-      </a>
-
-      <!-- BRIDGE Lab -->
-      <a href="https://ethics.dsi.uzh.ch/project/the-bridge-lab/" target="_blank" rel="noopener" class="card-link-wrapper" aria-label="Open BRIDGE Lab page">
-        <div class="card">
-          <div class="thumb">
-            <img class="card-thumb" src="images/projects/bridge-lab.jpg" alt="Photo or logo for BRIDGE Lab (DSI)" loading="lazy"
-                 onerror="this.closest('.thumb').classList.add('no-img'); this.remove();">
-          </div>
-          <div class="body">
-            <h3>BRIDGE Lab (DSI)</h3>
-            <p class="muted">Bridging the «Wisdom Gap» through research and innovation across sectors and cultures.</p>
-          </div>
-        </div>
-      </a>
-
-      <!-- SNSF Spark Grant -->
-      <a href="https://data.snf.ch/grants/grant/190489" target="_blank" rel="noopener" class="card-link-wrapper" aria-label="Open SNSF grant entry">
-        <div class="card">
-          <div class="thumb">
-            <img class="card-thumb" src="images/projects/soc_ai.jpg" alt="Photo or logo for Reimagining Artificial Intelligence project" loading="lazy"
-                 onerror="this.closest('.thumb').classList.add('no-img'); this.remove();">
-          </div>
-          <div class="body">
-            <h3>Reimagining Artificial Intelligence</h3>
-            <p class="muted">SNSF Spark Grant 2019 towards establishing a sociological conception of AI.</p>
-          </div>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
-    <section id="teaching" class="band">
-      <div class="container">
-        <div class="section-head">
-          <h2 class="h2">Teaching</h2>
-        </div>
-
-
-        <div class="timeline">
-          <div class="t-item" data-date="2025">
-            <h3>Experimental Design in the Age of Artificial Intelligence (Bachelor & Master)</h3>
-              <span class="chip teaching-role">Original Course Design & Instruction</span>
-              <ul>
-                <li>Explores how AI is transforming social science experimentation from study design and data generation to analysis.</li>
-                <li>Teaches students to integrate AI tools across the research process.</li>
-                <li>Includes hands-on replication of an experiment using LLM synthetic participants.</li>
-                <li>Bridges experimental methods with innovation to rethink how we study human behavior in the age of Artificial Intelligence.</li>
-              </ul>
-          </div>
-
-          <div class="t-item" data-date="2024">
-            <h3>Introduction to Social Norms and Cooperation (Master)</h3>
-              <span class="chip teaching-role assistant">Teaching Assistant</span>
-             <ul>
-                <li>Introduces the study of social norms and experimental methods for cooperation, trust, and norm enforcement.</li>
-                <li>Engages students through discussions, presentations, and critical readings of landmark studies.</li>
-                <li>Examines how norms emerge, change, and sustain collective behavior in modern societies.</li>
-                <li>Combines conceptual insight with practical training to design and evaluate behavioral experiments.</li>
-             </ul>
-          </div>
-
-          <div class="t-item" data-date="2023">
-            <h3>Scientific Methods (Bachelor)</h3>
-              <span class="chip teaching-role assistant">Tutor</span>
-             <ul>
-                <li>Supported students in mastering core techniques of scientific work from literature and data research to the critical discussion of academic texts.</li>
-                 <li>Guided the interpretation of empirical results and effective presentation of scientific findings.</li>
-                 <li>Provided feedback and graded written assignments, fostering analytical and methodological competence.</li>
-             </ul>
-          </div>
-
-        </div>
+    <div class="container">
+      <div class="section-head">
+        <h2 class="h2">Labs & Projects</h2>
       </div>
-    </section>
 
-    <section id="talks" class="band">
-      <div class="container">
-        <div class="section-head">
-          <h2 class="h2">Conference Talks & Participation</h2>
-        </div>
-
-        <div class="timeline">
-          <div class="t-item" data-date="2025">
-            <h3>
-                <a href="https://www.ic2s2-2025.org/" target="_blank" rel="noopener">
-                    International Conference on Computational Social Science (IC2S2)
-                </a>
-            </h3>
-            <p>Poster Topic: Human–AI Cooperation: Leveraging AI Norm Reinforcement in a Public Goods Game.</p>
-            <a class="btn primary" href="images/posters/ic2s2-2025-poster.pdf" target="_blank" rel="noopener">View Poster</a>
-          </div>
-
-          <div class="t-item" data-date="2024">
-            <h3>
-                <a href="https://imebess.org/2025/" target="_blank" rel="noopener">
-                International Meeting on Experimental and Behavioral Social Sciences (IMEBESS)
-                </a>
-            </h3>
-            <p>Participated in the Synthetic Replication Games Workshop hosted by talkingtomachines.</p>
-            <div class="row"><span class="chip">Participation</span><span class="chip">Workshop</span></div>
-          </div>
-
-          <div class="t-item" data-date="2024">
-            <h3>
-                <a href="https://machinebehavior.science/" target="_blank" rel="noopener">
-                    Machine + Behavior Conference
-                </a>
-            </h3>
-            <div class="row"><span class="chip">Participation</span></div>
-          </div>
-
-          <div class="t-item" data-date="2024">
-            <h3>
-                <a href="https://www.plusx.ai/" target="_blank" rel="noopener">
-                    AI+X Summit
-                </a>
-            </h3>
-            <div class="row"><span class="chip">Participation</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="contact-full">
-      <div class="contact-inner">
-        <h2 class="contact-title">Get in touch</h2>
-
-        <p class="contact-subtitle">
-          I’m always happy to connect about research, collaborations, or teaching ideas.
-          Drop me a message or find me on the platforms below.
-        </p>
-
-        <div class="card contact-card">
-          <div class="body">
-            <p><strong>Email:</strong> <a href="mailto:nico.mutzner@uzh.ch">nico.mutzner@uzh.ch</a></p>
-            <p><strong>Office:</strong> University of Zurich, Department of Sociology</p>
-
-            <div class="contact-links">
-              <a class="btn primary" href="https://www.suz.uzh.ch/en/institute/aboutus/mid_level/mutzner.html" target="_blank" rel="noopener">University of Zurich</a>
-              <a class="btn primary" href="https://www.linkedin.com/in/nico-mutzner/" target="_blank" rel="noopener">Linkedin</a>
-              <a class="btn primary" href="https://scholar.google.com/citations?hl=en&user=cnAplwQAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+      <div class="grid cols-3">
+        <!-- SOHAM -->
+        <a href="https://www.tcd.ie/soham/" target="_blank" rel="noopener" class="card-link-wrapper"
+          aria-label="Open SOHAM Lab website">
+          <div class="card">
+            <div class="thumb">
+              <img class="card-thumb" src="images/projects/soham.jpg" alt="Photo or logo for SOHAM Lab" loading="lazy"
+                onerror="this.closest('.thumb').classList.add('no-img'); this.remove();">
+            </div>
+            <div class="body">
+              <h3>Society of Human and Machines (SOHAM)</h3>
+              <p class="muted">Joint research centre dedicated to understanding how AI and automation are reshaping
+                society.</p>
             </div>
           </div>
+        </a>
+
+        <!-- BRIDGE Lab -->
+        <a href="https://ethics.dsi.uzh.ch/project/the-bridge-lab/" target="_blank" rel="noopener"
+          class="card-link-wrapper" aria-label="Open BRIDGE Lab page">
+          <div class="card">
+            <div class="thumb">
+              <img class="card-thumb" src="images/projects/bridge-lab.jpg" alt="Photo or logo for BRIDGE Lab (DSI)"
+                loading="lazy" onerror="this.closest('.thumb').classList.add('no-img'); this.remove();">
+            </div>
+            <div class="body">
+              <h3>BRIDGE Lab (DSI)</h3>
+              <p class="muted">Bridging the «Wisdom Gap» through research and innovation across sectors and cultures.
+              </p>
+            </div>
+          </div>
+        </a>
+
+        <!-- SNSF Spark Grant -->
+        <a href="https://data.snf.ch/grants/grant/190489" target="_blank" rel="noopener" class="card-link-wrapper"
+          aria-label="Open SNSF grant entry">
+          <div class="card">
+            <div class="thumb">
+              <img class="card-thumb" src="images/projects/soc_ai.jpg"
+                alt="Photo or logo for Reimagining Artificial Intelligence project" loading="lazy"
+                onerror="this.closest('.thumb').classList.add('no-img'); this.remove();">
+            </div>
+            <div class="body">
+              <h3>Reimagining Artificial Intelligence</h3>
+              <p class="muted">SNSF Spark Grant 2019 towards establishing a sociological conception of AI.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="teaching" class="band">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="h2">Teaching</h2>
+      </div>
+
+
+      <div class="timeline">
+        <div class="t-item" data-date="2025">
+          <h3>Experimental Design in the Age of Artificial Intelligence (Bachelor & Master)</h3>
+          <span class="chip teaching-role">Original Course Design & Instruction</span>
+          <ul>
+            <li>Explores how AI is transforming social science experimentation from study design and data generation to
+              analysis.</li>
+            <li>Teaches students to integrate AI tools across the research process.</li>
+            <li>Includes hands-on replication of an experiment using LLM synthetic participants.</li>
+            <li>Bridges experimental methods with innovation to rethink how we study human behavior in the age of
+              Artificial Intelligence.</li>
+          </ul>
+        </div>
+
+        <div class="t-item" data-date="2024">
+          <h3>Introduction to Social Norms and Cooperation (Master)</h3>
+          <span class="chip teaching-role assistant">Teaching Assistant</span>
+          <ul>
+            <li>Introduces the study of social norms and experimental methods for cooperation, trust, and norm
+              enforcement.</li>
+            <li>Engages students through discussions, presentations, and critical readings of landmark studies.</li>
+            <li>Examines how norms emerge, change, and sustain collective behavior in modern societies.</li>
+            <li>Combines conceptual insight with practical training to design and evaluate behavioral experiments.</li>
+          </ul>
+        </div>
+
+        <div class="t-item" data-date="2023">
+          <h3>Scientific Methods (Bachelor)</h3>
+          <span class="chip teaching-role assistant">Tutor</span>
+          <ul>
+            <li>Supported students in mastering core techniques of scientific work from literature and data research to
+              the critical discussion of academic texts.</li>
+            <li>Guided the interpretation of empirical results and effective presentation of scientific findings.</li>
+            <li>Provided feedback and graded written assignments, fostering analytical and methodological competence.
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="talks" class="band">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="h2">Conference Talks & Participation</h2>
+      </div>
+
+      <div class="timeline">
+        <div class="t-item" data-date="2025">
+          <h3>
+            <a href="https://www.ic2s2-2025.org/" target="_blank" rel="noopener">
+              International Conference on Computational Social Science (IC2S2)
+            </a>
+          </h3>
+          <p>Poster Topic: Human–AI Cooperation: Leveraging AI Norm Reinforcement in a Public Goods Game.</p>
+          <a class="btn primary" href="images/posters/ic2s2-2025-poster.pdf" target="_blank" rel="noopener">View
+            Poster</a>
+        </div>
+
+        <div class="t-item" data-date="2024">
+          <h3>
+            <a href="https://imebess.org/2025/" target="_blank" rel="noopener">
+              International Meeting on Experimental and Behavioral Social Sciences (IMEBESS)
+            </a>
+          </h3>
+          <p>Participated in the Synthetic Replication Games Workshop hosted by talkingtomachines.</p>
+          <div class="row"><span class="chip">Participation</span><span class="chip">Workshop</span></div>
+        </div>
+
+        <div class="t-item" data-date="2024">
+          <h3>
+            <a href="https://machinebehavior.science/" target="_blank" rel="noopener">
+              Machine + Behavior Conference
+            </a>
+          </h3>
+          <div class="row"><span class="chip">Participation</span></div>
+        </div>
+
+        <div class="t-item" data-date="2024">
+          <h3>
+            <a href="https://www.plusx.ai/" target="_blank" rel="noopener">
+              AI+X Summit
+            </a>
+          </h3>
+          <div class="row"><span class="chip">Participation</span></div>
         </div>
       </div>
-       <footer>
-    <div class="container">
-      <p>© <span id="year"></span> Nico Mutzner</p>
     </div>
-  </footer>
-</section>
+  </section>
 
-<button id="toTop" class="to-top-btn" aria-label="Back to top">
-  ↑
-</button>
+  <section id="contact" class="contact-full">
+    <div class="contact-inner">
+      <h2 class="contact-title">Get in touch</h2>
 
-  <script>
-    // Year (safe lookup)
-    const yearEl = document.getElementById('year');
-    if (yearEl) yearEl.textContent = new Date().getFullYear();
+      <p class="contact-subtitle">
+        I’m always happy to connect about research, collaborations, or teaching ideas.
+        Drop me a message or find me on the platforms below.
+      </p>
 
-    // Active link highlight on scroll
-    const sections = [...document.querySelectorAll('section, main.hero')];
-    const navLinks = [...document.querySelectorAll('.nav .link')];
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          const id = entry.target.id || 'home';
-          navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${id}`));
-        }
-      });
-    }, { rootMargin: '-40% 0px -50% 0px', threshold: 0.01 });
-    sections.forEach(s => observer.observe(s));
+      <div class="card contact-card">
+        <div class="body">
+          <p><strong>Email:</strong> <a href="mailto:nico.mutzner@uzh.ch">nico.mutzner@uzh.ch</a></p>
+          <p><strong>Office:</strong> University of Zurich, Department of Sociology</p>
 
-    // Split date ranges into two lines on timeline labels
-    function initTimelineDateLabels(){
-      document.querySelectorAll('.timeline .t-item').forEach(el => {
-        const raw = (el.dataset.date || '').trim();
-        const m = raw.match(/^(\d{4})\s*[\u2013\u2014-]\s*(\d{4})$/); // YYYY–YYYY
-        if (m) {
-          el.classList.add('range');
-          el.dataset.from = m[1];
-          el.dataset.to = m[2];
-        } else {
-          el.classList.remove('range');
-          delete el.dataset.from;
-          delete el.dataset.to;
-        }
-      });
-    }
+          <div class="contact-links">
+            <a class="btn primary" href="https://www.suz.uzh.ch/en/institute/aboutus/mid_level/mutzner.html"
+              target="_blank" rel="noopener">University of Zurich</a>
+            <a class="btn primary" href="https://www.linkedin.com/in/nico-mutzner/" target="_blank"
+              rel="noopener">Linkedin</a>
+            <a class="btn primary" href="https://scholar.google.com/citations?hl=en&user=cnAplwQAAAAJ" target="_blank"
+              rel="noopener">Google Scholar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="container">
+        <p>© <span id="year"></span> Nico Mutzner</p>
+      </div>
+    </footer>
+  </section>
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', init);
-    } else {
-      init();
-    }
+  <button id="toTop" class="to-top-btn" aria-label="Back to top">
+    ↑
+  </button>
 
-    // ---- Minimal tests (console) ----
-    (function runTests(){
-      const pubs = document.getElementById('count-pubs');
-      const cites = document.getElementById('count-cites');
-      const teach = document.getElementById('count-teach');
-      console.assert(!!pubs && !!cites, 'Pubs & Cites counters should exist');
-      console.assert(!teach, 'Courses counter should NOT exist anymore');
-      console.assert(Number(pubs?.dataset.target) === 8, 'Publications target should be 8');
-      console.assert(Number(cites?.dataset.target) === 100, 'Citations target should be 100');
-
-
-      // Publications (now tinted): cards should differ from working paper cards (border color)
-      const pubCard = document.querySelector('#publications .card');
-      const wpCard = document.querySelector('#working-papers .card');
-      if (pubCard && wpCard) {
-        const pubStyle = getComputedStyle(pubCard);
-        const wpStyle = getComputedStyle(wpCard);
-        console.assert(pubStyle.borderColor !== wpStyle.borderColor, 'Publications cards should have a distinct (accent) border color');
-      }
-
-      // Status chips
-      const statusChips = [...document.querySelectorAll('#working-papers .chip.status')];
-      console.assert(statusChips.length >= 2, 'There should be status chips for working papers');
-
-      // Additional: ensure no speckle canvas remains
-      console.assert(!document.getElementById('bg-speckles'), 'Speckle canvas should not exist');
-
-      // New test: background contains at least one radial-gradient (side lights)
-      const bodyStyle = getComputedStyle(document.body).backgroundImage || '';
-      console.assert(/radial-gradient\(/.test(bodyStyle), 'Background should include radial-gradient side lights');
-
-      // Thumbs structure present (we don't require the image to load)
-      console.assert(document.querySelector('#publications .thumb') && document.querySelector('#projects .thumb'), 'Thumbnail containers should exist in publications and projects');
-    })();
-  </script>
-
-    <!-- Back to Top SCript -->
-    <script>
-      const toTop = document.getElementById('toTop');
-
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 600) {
-          toTop.classList.add('visible');
-        } else {
-          toTop.classList.remove('visible');
-        }
-      });
-
-      toTop.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-    </script>
+  <!-- Main JavaScript -->
+  <script src="script.js"></script>
 
   <!-- Structured data for richer previews -->
   <script type="application/ld+json">
@@ -1618,4 +603,5 @@
   </script>
 
 </body>
+
 </html>
