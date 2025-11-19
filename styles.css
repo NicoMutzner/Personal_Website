@@ -48,6 +48,17 @@ html {
     scroll-behavior: smooth;
 }
 
+#network-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Places it behind the text/content */
+    pointer-events: none; /* Ensures you can still click links on the page */
+    opacity: 0.5; /* Keeps it subtle so text remains readable */
+}
+
 body {
     margin: 0;
     font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji';

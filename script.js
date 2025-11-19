@@ -1,3 +1,122 @@
+// Network/Constellation Background Animation (Static/Overlay)
+(() => {
+    const canvas = document.getElementById('network-bg');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    let width, height;
+
+    const cfg = {
+        particleCount: window.innerWidth < 768 ? 40 : 90,
+        connectDistance: 150,
+        moveSpeed: 0.4, // Gentle float speed
+        colors: {
+            particle: 'rgba(34, 211, 238, 0.8)', // Cyan
+            line: 'rgba(34, 211, 238, '
+        }
+    };
+
+    let particles = [];
+
+    // Mouse interaction
+    const mouse = { x: null, y: null, radius: 200 };
+    window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX; // Use clientX for fixed overlay
+        mouse.y = e.clientY; // Use clientY for fixed overlay
+    });
+
+    function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+        if (Math.abs(particles.length - (width < 768 ? 40 : 90)) > 20) {
+            initParticles();
+        }
+    }
+
+    class Particle {
+        constructor() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.vx = (Math.random() - 0.5) * cfg.moveSpeed;
+            this.vy = (Math.random() - 0.5) * cfg.moveSpeed;
+            this.size = Math.random() * 2 + 1;
+        }
+
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+
+            // Bounce off edges
+            if (this.x < 0 || this.x > width) this.vx *= -1;
+            if (this.y < 0 || this.y > height) this.vy *= -1;
+
+            // Mouse interaction
+            if (mouse.x != null) {
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx*dx + dy*dy);
+
+                if (distance < mouse.radius) {
+                    const forceDirectionX = dx / distance;
+                    const forceDirectionY = dy / distance;
+                    const force = (mouse.radius - distance) / mouse.radius;
+
+                    this.x -= forceDirectionX * force * 0.5;
+                    this.y -= forceDirectionY * force * 0.5;
+                }
+            }
+        }
+
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = cfg.colors.particle;
+            ctx.fill();
+        }
+    }
+
+    function initParticles() {
+        particles = [];
+        cfg.particleCount = window.innerWidth < 768 ? 40 : 90;
+        for (let i = 0; i < cfg.particleCount; i++) {
+            particles.push(new Particle());
+        }
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+
+        for (let i = 0; i < particles.length; i++) {
+            let p = particles[i];
+            p.update();
+            p.draw();
+
+            for (let j = i; j < particles.length; j++) {
+                let p2 = particles[j];
+                let dx = p.x - p2.x;
+                let dy = p.y - p2.y;
+                let dist = Math.sqrt(dx*dx + dy*dy);
+
+                if (dist < cfg.connectDistance) {
+                    let opacity = 1 - (dist / cfg.connectDistance);
+                    ctx.strokeStyle = cfg.colors.line + opacity * 0.2 + ')';
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(p2.x, p2.y);
+                    ctx.stroke();
+                }
+            }
+        }
+        requestAnimationFrame(animate);
+    }
+
+    resize();
+    initParticles();
+    animate();
+    window.addEventListener('resize', resize);
+})();
+
 // Count animation
 (() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
