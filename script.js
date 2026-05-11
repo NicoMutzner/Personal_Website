@@ -3,6 +3,11 @@
     const canvas = document.getElementById('network-bg');
     if (!canvas) return;
 
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        canvas.hidden = true;
+        return;
+    }
+
     const ctx = canvas.getContext('2d');
     let width, height;
 
@@ -260,52 +265,19 @@ if (document.readyState === 'loading') {
     init();
 }
 
-// ---- Minimal tests (console) ----
-(function runTests() {
-    const pubs = document.getElementById('count-pubs');
-    const cites = document.getElementById('count-cites');
-    const teach = document.getElementById('count-teach');
-    console.assert(!!pubs && !!cites, 'Pubs & Cites counters should exist');
-    console.assert(!teach, 'Courses counter should NOT exist anymore');
-    console.assert(Number(pubs?.dataset.target) === 8, 'Publications target should be 8');
-    console.assert(Number(cites?.dataset.target) === 100, 'Citations target should be 100');
-
-
-    // Publications (now tinted): cards should differ from working paper cards (border color)
-    const pubCard = document.querySelector('#publications .card');
-    const wpCard = document.querySelector('#working-papers .card');
-    if (pubCard && wpCard) {
-        const pubStyle = getComputedStyle(pubCard);
-        const wpStyle = getComputedStyle(wpCard);
-        console.assert(pubStyle.borderColor !== wpStyle.borderColor, 'Publications cards should have a distinct (accent) border color');
-    }
-
-    // Status chips
-    const statusChips = [...document.querySelectorAll('#working-papers .chip.status')];
-    console.assert(statusChips.length >= 2, 'There should be status chips for working papers');
-
-    // Additional: ensure no speckle canvas remains
-    console.assert(!document.getElementById('bg-speckles'), 'Speckle canvas should not exist');
-
-    // New test: background contains at least one radial-gradient (side lights)
-    const bodyStyle = getComputedStyle(document.body).backgroundImage || '';
-    console.assert(/radial-gradient\(/.test(bodyStyle), 'Background should include radial-gradient side lights');
-
-    // Thumbs structure present (we don't require the image to load)
-    console.assert(document.querySelector('#publications .thumb') && document.querySelector('#projects .thumb'), 'Thumbnail containers should exist in publications and projects');
-})();
-
 // Back to Top Script
 const toTop = document.getElementById('toTop');
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 600) {
-        toTop.classList.add('visible');
-    } else {
-        toTop.classList.remove('visible');
-    }
-});
+if (toTop) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 600) {
+            toTop.classList.add('visible');
+        } else {
+            toTop.classList.remove('visible');
+        }
+    });
 
-toTop.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+    toTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}

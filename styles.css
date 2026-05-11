@@ -75,6 +75,16 @@ body {
     animation: bg-pan 38s ease-in-out infinite alternate;
 }
 
+@keyframes bg-pan {
+    from {
+        background-position: -10% 50%, 110% 50%, 35% 50%, 0 0;
+    }
+
+    to {
+        background-position: -8% 45%, 108% 55%, 65% 50%, 0 0;
+    }
+}
+
 a {
     color: inherit;
     text-decoration: none;
@@ -326,9 +336,7 @@ img {
     margin-top: .75rem;
 }
 
-/* Remove any leftover center alignment from older rules */
-.hero h1,
-.hero h2 {
+.hero-title {
     text-align: left;
 }
 
@@ -656,37 +664,6 @@ section {
     border-color: color-mix(in srgb, var(--accent) 55%, transparent);
 }
 
-/* ---------- Featured Article (standalone card) ---------- */
-.featured-card {
-    position: relative;
-    overflow: clip;
-    border-radius: var(--radius);
-    background: linear-gradient(180deg,
-            color-mix(in oklab, var(--surface), white 1%),
-            color-mix(in oklab, var(--surface), black 2%));
-    border: 3px solid color-mix(in srgb, var(--accent) 55%, transparent);
-    box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 25%, transparent) inset,
-        0 8px 24px rgba(2, 6, 23, 0.55);
-    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-}
-
-.featured-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 0 24px color-mix(in srgb, var(--accent) 40%, transparent),
-        0 16px 36px rgba(2, 6, 23, .8);
-    border-color: color-mix(in srgb, var(--accent) 60%, transparent);
-}
-
-.featured-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    pointer-events: none;
-    box-shadow: 0 0 25px color-mix(in srgb, var(--accent) 25%, transparent);
-    opacity: .25;
-}
-
 .band .featured-title {
     color: #000;
     margin: 0 0 1rem;
@@ -727,42 +704,11 @@ section {
     display: block;
 }
 
-/* Remove any leftover card styling */
-.featured-card,
-.band .card {
-    border: none;
-    box-shadow: none;
-    background: none;
-}
-
-/* eyebrow + title rhythm */
-.eyebrow {
-    display: inline-block;
-    padding: .2rem .6rem;
-    border-radius: 999px;
-    font-size: .75rem;
-    letter-spacing: .3px;
-    color: var(--text);
-    background: color-mix(in oklab, var(--surface), white 6%);
-    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
-    margin-bottom: .55rem;
-}
-
 .featured-title {
     margin: 0 0 .6rem;
     font-size: clamp(1.2rem, 1.1rem + .9vw, 1.6rem);
     line-height: 1.2;
     font-weight: 800;
-}
-
-/* tighten meta chips a hair */
-.featured-card .meta .chip {
-    font-size: .75rem;
-}
-
-/* ensure internal padding matches the rest of the site */
-.featured-card .body {
-    padding: 1.2rem;
 }
 
 /* ---------- Media thumbnails on cards ---------- */
@@ -980,26 +926,6 @@ footer {
     border: 0;
 }
 
-.kbd {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-    font-size: .8rem;
-    background: color-mix(in srgb, var(--muted) 20%, transparent);
-    padding: .1rem .35rem;
-    border-radius: .4rem;
-}
-
-.impact {
-    margin-top: 1rem;
-    padding: .8rem 1rem;
-    border-left: 3px solid color-mix(in srgb, var(--accent) 50%, transparent);
-    background: color-mix(in oklab, var(--surface), white 3%);
-    border-radius: 8px;
-}
-
-.impact strong {
-    color: var(--text);
-}
-
 @keyframes fade-up {
     from {
         opacity: 0;
@@ -1073,19 +999,6 @@ footer {
 }
 
 
-/* animations */
-@keyframes fade-up {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 @keyframes gradient-pan {
     0% {
         background-position: 0% 50%;
@@ -1098,6 +1011,7 @@ footer {
 
 /* accessibility: respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
+    body,
     .contact-full {
         animation: none;
     }
@@ -1105,10 +1019,6 @@ footer {
     .contact-title {
         animation: none;
     }
-}
-
-.card.section-card {
-    overflow: visible;
 }
 
 .to-top-btn {
