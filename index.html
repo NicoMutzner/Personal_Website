@@ -7,7 +7,7 @@
   <title>Nico Mutzner | Human–AI Cooperation Researcher, University of Zurich</title>
   <meta name="description"
     content="Official academic website of Nico Mutzner, PhD researcher in Sociology at the University of Zurich, focusing on human–AI cooperation, experimental social science, and behavioral research.">
-  <meta name="theme-color" content="#0ea5e9" />
+  <meta name="theme-color" content="#ece7d1" />
   <link rel="canonical" href="https://www.nicomutzner.com/">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="author" content="Nico Mutzner">
@@ -32,6 +32,13 @@
     content="PhD researcher at the University of Zurich studying human–AI cooperation through experimental social science.">
   <meta name="twitter:image" content="https://www.nicomutzner.com/images/personal_photo.jpg">
 
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap"
+    rel="stylesheet">
+
   <!-- Stylesheet -->
   <link rel="stylesheet" href="styles.css">
 
@@ -40,21 +47,11 @@
 </head>
 
 <body>
-    <canvas id="network-bg"></canvas>
-  <!-- Icon sprite: hidden, reusable icons -->
-  <svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
-
-    <!-- DOI / chain link -->
-    <symbol id="icon-link" viewBox="0 0 24 24">
-      <path fill="currentColor"
-        d="M3.9 12a4.1 4.1 0 014.1-4.1h3v2h-3a2.1 2.1 0 100 4.2h3v2h-3A4.1 4.1 0 013.9 12zm12-4.1h-3v2h3a2.1 2.1 0 010 4.2h-3v2h3a4.1 4.1 0 000-8.2z" />
-    </symbol>
-  </svg>
 
   <header class="nav">
     <div class="container nav-inner">
       <div class="brand">
-        <a class="home-link" href="#home">Home</a>
+        <a class="home-link" href="#home">Nico Mutzner</a>
       </div>
 
       <nav class="links" aria-label="Primary">
@@ -73,6 +70,7 @@
     <div class="container hero-grid">
       <!-- LEFT: headline, copy, CTAs -->
       <section class="hero-copy">
+        <p class="section-kicker">Human-AI cooperation research</p>
         <h1 class="hero-title">
           Exploring how Humans and Technology Interact
         </h1>
@@ -111,11 +109,9 @@
     </div>
   </main>
 
-  <section id="about">
+  <section id="about" class="about-intro">
     <div class="container">
-      <div class="section-head">
-        <h2 class="h2">About Me</h2>
-      </div>
+      <h2 class="sr-only">About</h2>
 
       <div class="about-text">
         <p>
@@ -126,7 +122,7 @@
           replications.
         </p>
 
-        <div class="row" style="justify-content:center; margin-top:1.4rem;">
+        <div class="row about-chips">
           <span class="chip">Human–AI Cooperation</span>
           <span class="chip">AI Agents</span>
           <span class="chip">Behavioural Experiments</span>
@@ -157,7 +153,7 @@
             Interactions
           </h2>
 
-          <div class="row meta" style="margin:.4rem 0 1rem;">
+          <div class="row meta">
             <span class="chip">2023</span>
             <span class="chip">Frontiers in Behavioral Economics</span>
             <span class="chip">Open Access</span>
@@ -307,7 +303,7 @@
   </section>
 
   <!-- Working Papers -->
-  <section id="working-papers">
+  <section id="working-papers" class="band">
     <div class="container">
       <div class="section-head">
         <h2 class="h2">Working Papers</h2>
@@ -333,13 +329,7 @@
             <h3>Human–AI Triangle Negotiation</h3>
             <p class="muted">Godazgar, T., <strong>Mutzner, N.</strong>, Yasseri, T. (2025).</p>
             <div class="row">
-              <span class="chip status review " title="In preparation">
-                <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
-                  <path
-                    d="M3 17.25V21h3.75L18.81 8.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 000-1.41l-2.34-2.34a1 1 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
-                </svg>
-                In Preparation
-              </span>
+              <span class="chip status review" title="In preparation">In Preparation</span>
             </div>
           </div>
         </article>
@@ -351,12 +341,7 @@
             <h3>Science Became Pure Fantasy – A Case Study on Neutralization Techniques in Scientific Misconduct</h3>
             <p class="muted"><strong>Mutzner, N.</strong>, Velicu, A., Rauhut, H. (2025).</p>
             <div class="row">
-              <span class="chip status review" title="Under review">
-                <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
-                  <path d="M12 2a9 9 0 100 18 9 9 0 000-18zm.75 4h-1.5v6l5.25 3.15.75-1.23-4.5-2.67V6z" />
-                </svg>
-                Under Review
-              </span>
+              <span class="chip status review" title="Under review">Under Review</span>
             </div>
           </div>
         </article>
@@ -375,7 +360,7 @@
         <a href="https://www.tcd.ie/soham/" target="_blank" rel="noopener" class="card-link-wrapper"
           aria-label="Open SOHAM Lab website">
           <div class="card">
-            <div class="thumb">
+            <div class="thumb logo-thumb" style="background-image: url('images/projects/soham.jpg');">
               <img class="card-thumb" src="images/projects/soham.jpg" alt="Photo or logo for SOHAM Lab" loading="lazy"
                 onerror="this.closest('.thumb').classList.add('no-img'); this.remove();">
             </div>
@@ -391,7 +376,7 @@
         <a href="https://ethics.dsi.uzh.ch/project/the-bridge-lab/" target="_blank" rel="noopener"
           class="card-link-wrapper" aria-label="Open BRIDGE Lab page">
           <div class="card">
-            <div class="thumb">
+            <div class="thumb logo-thumb" style="background-image: url('images/projects/bridge-lab.jpg');">
               <img class="card-thumb" src="images/projects/bridge-lab.jpg" alt="Photo or logo for BRIDGE Lab (DSI)"
                 loading="lazy" onerror="this.closest('.thumb').classList.add('no-img'); this.remove();">
             </div>
@@ -407,7 +392,7 @@
         <a href="https://data.snf.ch/grants/grant/190489" target="_blank" rel="noopener" class="card-link-wrapper"
           aria-label="Open SNSF grant entry">
           <div class="card">
-            <div class="thumb">
+            <div class="thumb logo-thumb" style="background-image: url('images/projects/soc_ai.jpg');">
               <img class="card-thumb" src="images/projects/soc_ai.jpg"
                 alt="Photo or logo for Reimagining Artificial Intelligence project" loading="lazy"
                 onerror="this.closest('.thumb').classList.add('no-img'); this.remove();">
@@ -481,7 +466,7 @@
     </div>
   </section>
 
-  <section id="talks" class="band">
+  <section id="talks">
     <div class="container">
       <div class="section-head">
         <h2 class="h2">Conference Talks & Participation</h2>
