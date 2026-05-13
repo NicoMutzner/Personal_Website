@@ -463,6 +463,17 @@ section:not(#featured) .h2::before {
     padding: 0 0 3.5rem;
 }
 
+section:where(#publications, #working-papers, #talks)::after {
+    content: "❦";
+    display: block;
+    margin: 1.5rem auto -3rem;
+    color: rgba(48, 42, 29, .32);
+    font-family: "Fraunces", Georgia, "Times New Roman", serif;
+    font-size: 1.45rem;
+    line-height: 1;
+    text-align: center;
+}
+
 .chapter-break {
     padding: 1.5rem 0 .5rem;
 }
@@ -639,6 +650,7 @@ section:not(#featured) .h2::before {
 }
 
 .card {
+    position: relative;
     height: 100%;
     overflow: hidden;
     background: var(--card);
@@ -646,6 +658,28 @@ section:not(#featured) .h2::before {
     border-radius: var(--radius);
     box-shadow: var(--card-shadow);
     transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.card[data-year]::before {
+    content: attr(data-year);
+    position: absolute;
+    top: .7rem;
+    left: .7rem;
+    z-index: 5;
+    padding: .22rem .6rem;
+    border-radius: 999px;
+    background: rgba(40, 34, 25, .78);
+    color: var(--paper-soft);
+    font-family: "Fraunces", Georgia, "Times New Roman", serif;
+    font-variation-settings: "opsz" 24, "SOFT" 50;
+    font-size: .82rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums lining-nums;
+    letter-spacing: .04em;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .18);
+    pointer-events: none;
 }
 
 .card:hover,

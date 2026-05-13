@@ -4,7 +4,17 @@
       "Bash(gh run *)",
       "Bash(file \"images/pubs/\"*.jpg)",
       "Bash(file \"images/wp/\"*.jpg)",
-      "Bash(file \"images/projects/\"*.jpg)"
+      "Bash(file \"images/projects/\"*.jpg)",
+      "Bash(python -m http.server 8765 --bind 127.0.0.1)",
+      "mcp__plugin_playwright_playwright__browser_resize",
+      "mcp__plugin_playwright_playwright__browser_navigate",
+      "mcp__plugin_playwright_playwright__browser_take_screenshot",
+      "Bash(curl -s -o NUL -w \"%{http_code}\" http://127.0.0.1:8765/styles.css)",
+      "Bash(kill %1)",
+      "Bash(python -m http.server 8766 --bind 127.0.0.1)",
+      "Bash(curl -s -o NUL -w \"styles.css: %{http_code}\\\\n\" http://127.0.0.1:8766/styles.css)",
+      "Bash(curl -s -o NUL -w \"index.html: %{http_code}\\\\n\" http://127.0.0.1:8766/index.html)",
+      "mcp__plugin_playwright_playwright__browser_evaluate"
     ]
   }
 }
