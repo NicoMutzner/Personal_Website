@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh run *)",
+      "Bash(file \"images/pubs/\"*.jpg)",
+      "Bash(file \"images/wp/\"*.jpg)",
+      "Bash(file \"images/projects/\"*.jpg)"
+    ]
+  }
+}

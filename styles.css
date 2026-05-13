@@ -635,9 +635,17 @@ section:not(#featured) .h2::before {
 }
 
 #publications .grid,
-#working-papers .grid {
+#working-papers .grid,
+#projects .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.15rem;
+}
+
+#publications .thumb,
+#working-papers .thumb,
+#projects .thumb {
+    height: auto;
+    aspect-ratio: 5 / 2;
 }
 
 .card-link-wrapper {
@@ -1017,12 +1025,10 @@ footer p {
         font-size: 1.25rem;
     }
 
-    #publications .grid {
+    #publications .grid,
+    #working-papers .grid,
+    #projects .grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 1.4rem;
-    }
-
-    #working-papers .grid {
         gap: 1.4rem;
     }
 
