@@ -566,31 +566,16 @@ section:not(#featured) .h2::before {
     background: linear-gradient(90deg, var(--brass), var(--ochre));
 }
 
-#featured .featured-title {
-    color: var(--paper-soft);
-}
-
-#featured .featured-grid p {
-    color: rgba(247, 242, 223, .82);
-}
-
-#featured .meta .chip {
-    background: rgba(218, 164, 100, .18);
-    border-color: rgba(218, 164, 100, .38);
-    color: var(--ochre);
-    font-weight: 600;
-}
-
 .featured-grid {
     display: grid;
     grid-template-columns: minmax(280px, .9fr) minmax(0, 1.1fr);
     gap: 2rem;
     align-items: center;
     padding: 1rem;
-    background: rgba(236, 231, 209, .06);
-    border: 1px solid rgba(236, 231, 209, .2);
+    background: var(--card);
+    border: 1px solid rgba(48, 42, 29, .14);
     border-radius: var(--radius);
-    box-shadow: none;
+    box-shadow: var(--card-shadow);
 }
 
 .featured-grid .media {
